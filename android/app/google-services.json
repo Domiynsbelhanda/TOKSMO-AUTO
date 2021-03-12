@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "675585212203",
+    "project_id": "car-rental-rdc",
+    "storage_bucket": "car-rental-rdc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675585212203:android:ef2188546501e373bf0f6e",
+        "android_client_info": {
+          "package_name": "cd.belhanda.car_rental_rdc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675585212203-urmg5h59skc26454a5pdcnmve8l3baa0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGWJMwVIZQ-sONPoU0F4UZEHX2gtYB-Qg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675585212203-urmg5h59skc26454a5pdcnmve8l3baa0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
