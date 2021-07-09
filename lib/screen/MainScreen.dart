@@ -13,6 +13,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../globalvariabels.dart';
+import 'AddingElement.dart';
 import 'HomeScreen.dart';
 import 'LoginPage.dart';
 
@@ -39,7 +40,8 @@ class _MainScreen extends State<MainScreen>{
         image: element.data()['image'],
         fullName: element.data()['name'],
         phone: element.data()['phone'],
-        type: element.data()['type']
+        type: element.data()['type'],
+        id: element.id
       );
     });
 
@@ -114,7 +116,7 @@ class _MainScreen extends State<MainScreen>{
                             child: Center(child: Text('MARQUES')),
                           )),
                       onTap: (){
-                        Navigator.pushNamed(context, PublicationPage.id);
+                        Navigator.pushNamed(context, AddingElement.id);
                       }
                   ),
 

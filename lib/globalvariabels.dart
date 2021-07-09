@@ -4,6 +4,7 @@ import 'package:car_rental_rdc/search.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:smart_select/smart_select.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 
@@ -196,3 +197,13 @@ Widget searching(context, types, liste){
      ),
    );
 }
+
+
+  List<S2Choice<String>> optionss = [
+    S2Choice<String>(value: 'vehicule', title: 'VEHICULE'),
+    S2Choice<String>(value: 'engin', title: 'ENGIN'),
+    S2Choice<String>(value: 'camion', title: 'CAMION'),
+    S2Choice<String>(value: 'location', title: 'LOCATION'),
+    S2Choice<String>(value: 'piece', title: 'PIECE'),
+    S2Choice<String>(value: 'accessoire', title: 'ACCESSOIRE'),
+  ];

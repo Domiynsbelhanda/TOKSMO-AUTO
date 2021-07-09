@@ -3,6 +3,7 @@ import 'package:car_rental_rdc/Nouveau%20dossier/available_cars.dart';
 import 'package:car_rental_rdc/Nouveau%20dossier/available_piece.dart';
 import 'package:car_rental_rdc/globalvariabels.dart';
 import 'package:car_rental_rdc/models/data.dart';
+import 'package:car_rental_rdc/screen/AddingElement.dart';
 import 'package:car_rental_rdc/screen/LoginPage.dart';
 import 'package:car_rental_rdc/screen/MainScreen.dart';
 import 'package:car_rental_rdc/screen/MyProfileCard.dart';
@@ -38,6 +39,7 @@ class App extends StatelessWidget {
           MainScreen.id: (context) => MainScreen(),
           LoginPage.id: (context) => LoginPage(),
           PublicationPage.id: (context) => PublicationPage(),
+          AddingElement.id: (context) => AddingElement(),
           ServiceScreen.id: (context) => ServiceScreen(),
           Marques.id: (context) => Marques(),
           AvailableCars.id: (context) => AvailableCars(),

@@ -4,6 +4,7 @@ import 'package:car_rental_rdc/globalvariabels.dart';
 import 'package:car_rental_rdc/widget/ProgressDialog.dart';
 import 'package:car_rental_rdc/widget/TaxiButton.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_pickers/image_pickers.dart';
 import 'package:smart_select/smart_select.dart';
+import 'package:uuid/uuid.dart';
 
 import 'MainScreen.dart';
 
@@ -27,7 +29,6 @@ class _PublicationPage extends State<PublicationPage>{
 
   var etatController = TextEditingController();
   var prixController = TextEditingController();
-  var marqueController = TextEditingController();
   var type_carrosserieController = TextEditingController();
   var modeleController = TextEditingController();
   var poignetController = TextEditingController();
@@ -41,11 +42,11 @@ class _PublicationPage extends State<PublicationPage>{
   var cylindreController = TextEditingController();
   String type = 'vehicule';
   String object = 'VOITURE';
+  String marque = "Toyota";
 
   List<S2Choice<String>> optionss = [
     S2Choice<String>(value: 'vehicule', title: 'VEHICULE'),
     S2Choice<String>(value: 'engin', title: 'ENGIN'),
-    S2Choice<String>(value: 'track', title: 'TRACK'),
     S2Choice<String>(value: 'camion', title: 'CAMION'),
   ];
 
@@ -55,6 +56,8 @@ class _PublicationPage extends State<PublicationPage>{
     S2Choice<String>(value: 'accessoire', title: 'ACCESSOIRE'),
     S2Choice<String>(value: 'location', title: 'MISE EN LOCATION'),
   ];
+
+  List<S2Choice<String>> marques = [];
 
   File _image;
   final picker = ImagePicker();
@@ -73,6 +76,18 @@ class _PublicationPage extends State<PublicationPage>{
 
   List<Media> _listImagePaths;
   List<String> images = [];
+
+  @override
+  void initState() {
+    FirebaseFirestore.instance.collection('Marques').get()
+    .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        marques.add(
+          S2Choice<String>(value: '${doc["marque"]}', title: '${doc["marque"].toString().toUpperCase()}'),
+        );
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +178,16 @@ class _PublicationPage extends State<PublicationPage>{
 
                 Padding(
                   padding: EdgeInsets.all(10.0),
+                  child: SmartSelect<String>.single(
+                      title: 'MARQUE : ',
+                      value: marque,
+                      choiceItems: marques,
+                      onChange: (state) => setState(() => marque = state.value)
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Column(
                     children: [
                       object == "piece" ? Container() :
@@ -213,23 +238,6 @@ class _PublicationPage extends State<PublicationPage>{
                       ),
 
                       SizedBox(height: 5.0),
-
-                      TextField(
-                        controller: marqueController,
-                        keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
-                          labelText: 'Marque',
-                          labelStyle: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width / 23,
-                            color: Colors.grey,
-                          ),
-                          hintStyle: TextStyle(
-                            color: Colors.grey,
-                            fontSize: MediaQuery.of(context).size.width / 25
-                          )
-                        ),
-                        style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22),
-                      ),
 
                       object == "piece" ? Container() :
                       object == "accessoire" ? Container() :
@@ -517,8 +525,8 @@ class _PublicationPage extends State<PublicationPage>{
                             return;
                           }*/
 
-                          if(_image.path.isEmpty){
-                            Fluttertoast.showToast(msg: "Selectionnez une image");
+                          if(_listImagePaths == null){
+                            Fluttertoast.showToast(msg: "Selectionnez 3 images");
                             return;
                           }
 
@@ -530,41 +538,58 @@ class _PublicationPage extends State<PublicationPage>{
                                 builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
                               );
 
-                              var url = await uploadFile(_image, DateTime.now().toString());
+                              int indice = 0;
 
-                              DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('$object/${type}').child(uuid.v4().toString());
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'carrosserie': type_carrosserieController.text,
+                                    'modele': modeleController.text,
+                                    'poignet': poignetController.text,
+                                    'carburant': carburantController.text,
+                                    'couleur': couleurController.text,
+                                    'kilometrage': kilometrageController.text,
+                                    'boite_vitesse': boite_vitesseController.text,
+                                    'nombre_siege': nombre_siegeController.text,
+                                    'nombre_porte': nombre_porteController.text,
+                                    'annee': anneeController.text,
+                                    'cylindre': cylindreController.text,
+                                    'image': images,
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
+
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
+
+                                  Navigator.pop(context);
+
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
 
                               //Prepare data to be saved on users table
-                              Map userMap = {
-                                'etat': etatController.text,
-                                'prix': prixController.text,
-                                'marque': marqueController.text,
-                                'carrosserie': type_carrosserieController.text,
-                                'modele': modeleController.text,
-                                'poignet': poignetController.text,
-                                'carburant': carburantController.text,
-                                'couleur': couleurController.text,
-                                'kilometrage': kilometrageController.text,
-                                'boite_vitesse': boite_vitesseController.text,
-                                'nombre_siege': nombre_siegeController.text,
-                                'nombre_porte': nombre_porteController.text,
-                                'annee': anneeController.text,
-                                'cylindre': cylindreController.text,
-                                'image': url.toString(),
-                                'disponible': true,
-                                'uid': currentUser.id,
-                                'email': currentUser.email,
-                                'phone': currentUser.phone,
-                                'user_image': currentUser.image,
-                                'fullName': currentUser.fullName
-                              };
 
-                              newUserRef.set(userMap);
-
-                              Navigator.pop(context);
-
-                              Navigator.pushNamed(context, MainScreen.id);
-                              Fluttertoast.showToast(msg: 'Publication effectuée');
                             } else if(type == 'engin'){
                               showDialog(
                                 barrierDismissible: false,
@@ -572,80 +597,54 @@ class _PublicationPage extends State<PublicationPage>{
                                 builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
                               );
 
-                              var url = await uploadFile(_image, DateTime.now().toString());
+                              int indice = 0;
 
-                              DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('$object/${type}').child(uuid.v4().toString());
 
-                              //Prepare data to be saved on users table
-                              Map userMap = {
-                                'etat': etatController.text,
-                                'prix': prixController.text,
-                                'marque': marqueController.text,
-                                'carrosserie': type_carrosserieController.text,
-                                'modele': modeleController.text,
-                                'poignet': poignetController.text,
-                                'carburant': carburantController.text,
-                                'couleur': couleurController.text,
-                                'kilometrage': kilometrageController.text,
-                                'boite_vitesse': boite_vitesseController.text,
-                                'annee': anneeController.text,
-                                'cylindre': cylindreController.text,
-                                'image': url.toString(),
-                                'disponible': true,
-                                'uid': currentUser.id,
-                                'email': currentUser.email,
-                                'phone': currentUser.phone,
-                                'user_image': currentUser.image,
-                                'fullName': currentUser.fullName
-                              };
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'carrosserie': type_carrosserieController.text,
+                                    'modele': modeleController.text,
+                                    'poignet': poignetController.text,
+                                    'carburant': carburantController.text,
+                                    'couleur': couleurController.text,
+                                    'kilometrage': kilometrageController.text,
+                                    'boite_vitesse': boite_vitesseController.text,
+                                    'annee': anneeController.text,
+                                    'cylindre': cylindreController.text,
+                                    'image': images,
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
 
-                              newUserRef.set(userMap);
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
 
-                              Navigator.pop(context);
+                                  Navigator.pop(context);
 
-                              Navigator.pushNamed(context, MainScreen.id);
-                              Fluttertoast.showToast(msg: 'Publication effectuée');
-                            } else if(type == 'track'){
-                              showDialog(
-                                barrierDismissible: false,
-                                context: context,
-                                builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
-                              );
-
-                              var url = await uploadFile(_image, DateTime.now().toString());
-
-                              DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('$object/${type}').child(uuid.v4().toString());
-
-                              //Prepare data to be saved on users table
-                              Map userMap = {
-                                'etat': etatController.text,
-                                'prix': prixController.text,
-                                'marque': marqueController.text,
-                                'carrosserie': type_carrosserieController.text,
-                                'modele': modeleController.text,
-                                'poignet': poignetController.text,
-                                'carburant': carburantController.text,
-                                'couleur': couleurController.text,
-                                'kilometrage': kilometrageController.text,
-                                'boite_vitesse': boite_vitesseController.text,
-                                'nombre_roue': nombre_siegeController.text,
-                                'annee': anneeController.text,
-                                'cylindre': cylindreController.text,
-                                'image': url.toString(),
-                                'disponible': true,
-                                'uid': currentUser.id,
-                                'email': currentUser.email,
-                                'phone': currentUser.phone,
-                                'user_image': currentUser.image,
-                                'fullName': currentUser.fullName
-                              };
-
-                              newUserRef.set(userMap);
-
-                              Navigator.pop(context);
-
-                              Navigator.pushNamed(context, MainScreen.id);
-                              Fluttertoast.showToast(msg: 'Publication effectuée');
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
                             } else if(type == 'camion'){
                               showDialog(
                                 barrierDismissible: false,
@@ -653,40 +652,54 @@ class _PublicationPage extends State<PublicationPage>{
                                 builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
                               );
 
-                              var url = await uploadFile(_image, DateTime.now().toString());
+                              int indice = 0;
 
-                              DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('$object/${type}').child(uuid.v4().toString());
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'carrosserie': type_carrosserieController.text,
+                                    'modele': modeleController.text,
+                                    'poignet': poignetController.text,
+                                    'carburant': carburantController.text,
+                                    'couleur': couleurController.text,
+                                    'kilometrage': kilometrageController.text,
+                                    'boite_vitesse': boite_vitesseController.text,
+                                    'nombre_roue': nombre_siegeController.text,
+                                    'annee': anneeController.text,
+                                    'cylindre': cylindreController.text,
+                                    'image': url.toString(),
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
 
-                              //Prepare data to be saved on users table
-                              Map userMap = {
-                                'etat': etatController.text,
-                                'prix': prixController.text,
-                                'marque': marqueController.text,
-                                'carrosserie': type_carrosserieController.text,
-                                'modele': modeleController.text,
-                                'poignet': poignetController.text,
-                                'carburant': carburantController.text,
-                                'couleur': couleurController.text,
-                                'kilometrage': kilometrageController.text,
-                                'boite_vitesse': boite_vitesseController.text,
-                                'nombre_roue': nombre_siegeController.text,
-                                'annee': anneeController.text,
-                                'cylindre': cylindreController.text,
-                                'image': url.toString(),
-                                'disponible': true,
-                                'uid': currentUser.id,
-                                'email': currentUser.email,
-                                'phone': currentUser.phone,
-                                'user_image': currentUser.image,
-                                'fullName': currentUser.fullName
-                              };
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
 
-                              newUserRef.set(userMap);
+                                  Navigator.pop(context);
 
-                              Navigator.pop(context);
-
-                              Navigator.pushNamed(context, MainScreen.id);
-                              Fluttertoast.showToast(msg: 'Publication effectuée');
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
                             }
                           } else if (object == 'piece'){
                             showDialog(
@@ -695,31 +708,45 @@ class _PublicationPage extends State<PublicationPage>{
                                 builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
                               );
 
-                              var url = await uploadFile(_image, DateTime.now().toString());
+                              int indice = 0;
 
-                              DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('$object').child(uuid.v4().toString());
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'modele': modeleController.text,
+                                    'image': url.toString(),
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
 
-                              //Prepare data to be saved on users table
-                              Map userMap = {
-                                'etat': etatController.text,
-                                'prix': prixController.text,
-                                'marque': marqueController.text,
-                                'modele': modeleController.text,
-                                'image': url.toString(),
-                                'disponible': true,
-                                'uid': currentUser.id,
-                                'email': currentUser.email,
-                                'phone': currentUser.phone,
-                                'user_image': currentUser.image,
-                                'fullName': currentUser.fullName
-                              };
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
 
-                              newUserRef.set(userMap);
+                                  Navigator.pop(context);
 
-                              Navigator.pop(context);
-
-                              Navigator.pushNamed(context, MainScreen.id);
-                              Fluttertoast.showToast(msg: 'Publication effectuée');
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
                           } else if (object == 'accessoire')
                           {
                             showDialog(
@@ -728,42 +755,217 @@ class _PublicationPage extends State<PublicationPage>{
                                 builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
                               );
 
-                              var url = await uploadFile(_image, DateTime.now().toString());
+                            int indice = 0;
 
-                              DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('$object').child(uuid.v4().toString());
+                            for(var i in _listImagePaths){
+                              var uuid = Uuid();
+                              String uid = uuid.v1();
+                              indice += 1;
+                              String url;
+                              final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                              final TaskSnapshot uploadTask = await postImageRef
+                                  .child('${uid}_${indice}jpg').putFile(File(i.path));
+                              var ImageUrl = await uploadTask.ref.getDownloadURL();
+                              url = ImageUrl.toString();
+                              images.add(url);
+                              if (images.length == 3){
+                                var data = {
+                                  'etat': etatController.text,
+                                  'prix': prixController.text,
+                                  'marque': marque,
+                                  'modele': modeleController.text,
+                                  'couleur': couleurController.text,
+                                  'image': url.toString(),
+                                  'disponible': true,
+                                  'uid': currentUser.id,
+                                  'email': currentUser.email,
+                                  'phone': currentUser.phone,
+                                  'user_image': currentUser.image,
+                                  'fullName': currentUser.fullName,
+                                  'objet': object,
+                                  'type': type
+                                };
 
-                              //Prepare data to be saved on users table
-                              Map userMap = {
-                                'etat': etatController.text,
-                                'prix': prixController.text,
-                                'marque': marqueController.text,
-                                'modele': modeleController.text,
-                                'couleur': couleurController.text,
-                                'image': url.toString(),
-                                'disponible': true,
-                                'uid': currentUser.id,
-                                'email': currentUser.email,
-                                'phone': currentUser.phone,
-                                'user_image': currentUser.image,
-                                'fullName': currentUser.fullName
-                              };
+                                final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                await _firestore.collection('Datas').add(data);
 
-                              newUserRef.set(userMap);
+                                Navigator.pop(context);
 
-                              Navigator.pop(context);
-
-                              Navigator.pushNamed(context, MainScreen.id);
-                              Fluttertoast.showToast(msg: 'Publication effectuée');
+                                Navigator.pushNamed(context, MainScreen.id);
+                                Fluttertoast.showToast(msg: 'Publication effectuée');
+                              }
+                            }
                           } else if (object == 'location')
                           {
                             if(type == 'vehicule'){
-                              //véhicule
+
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
+                              );
+
+                              int indice = 0;
+
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'carrosserie': type_carrosserieController.text,
+                                    'modele': modeleController.text,
+                                    'poignet': poignetController.text,
+                                    'carburant': carburantController.text,
+                                    'couleur': couleurController.text,
+                                    'kilometrage': kilometrageController.text,
+                                    'boite_vitesse': boite_vitesseController.text,
+                                    'nombre_siege': nombre_siegeController.text,
+                                    'nombre_porte': nombre_porteController.text,
+                                    'annee': anneeController.text,
+                                    'cylindre': cylindreController.text,
+                                    'image': images,
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
+
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
+
+                                  Navigator.pop(context);
+
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
                             } else if(type == 'engin'){
-                              //véhicule
-                            } else if(type == 'track'){
-                              //véhicule
+
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
+                              );
+
+                              int indice = 0;
+
+
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'carrosserie': type_carrosserieController.text,
+                                    'modele': modeleController.text,
+                                    'poignet': poignetController.text,
+                                    'carburant': carburantController.text,
+                                    'couleur': couleurController.text,
+                                    'kilometrage': kilometrageController.text,
+                                    'boite_vitesse': boite_vitesseController.text,
+                                    'annee': anneeController.text,
+                                    'cylindre': cylindreController.text,
+                                    'image': images,
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
+
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
+
+                                  Navigator.pop(context);
+
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
                             } else if(type == 'camion'){
-                              //véhicule
+
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) => ProgressDialog(status: 'Enregistrement en cours...',),
+                              );
+
+                              int indice = 0;
+
+                              for(var i in _listImagePaths){
+                                var uuid = Uuid();
+                                String uid = uuid.v1();
+                                indice += 1;
+                                String url;
+                                final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
+                                final TaskSnapshot uploadTask = await postImageRef
+                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                var ImageUrl = await uploadTask.ref.getDownloadURL();
+                                url = ImageUrl.toString();
+                                images.add(url);
+                                if (images.length == 3){
+                                  var data = {
+                                    'etat': etatController.text,
+                                    'prix': prixController.text,
+                                    'marque': marque,
+                                    'carrosserie': type_carrosserieController.text,
+                                    'modele': modeleController.text,
+                                    'poignet': poignetController.text,
+                                    'carburant': carburantController.text,
+                                    'couleur': couleurController.text,
+                                    'kilometrage': kilometrageController.text,
+                                    'boite_vitesse': boite_vitesseController.text,
+                                    'nombre_roue': nombre_siegeController.text,
+                                    'annee': anneeController.text,
+                                    'cylindre': cylindreController.text,
+                                    'image': url.toString(),
+                                    'disponible': true,
+                                    'uid': currentUser.id,
+                                    'email': currentUser.email,
+                                    'phone': currentUser.phone,
+                                    'user_image': currentUser.image,
+                                    'fullName': currentUser.fullName,
+                                    'objet': object,
+                                    'type': type
+                                  };
+
+                                  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                                  await _firestore.collection('Datas').add(data);
+
+                                  Navigator.pop(context);
+
+                                  Navigator.pushNamed(context, MainScreen.id);
+                                  Fluttertoast.showToast(msg: 'Publication effectuée');
+                                }
+                              }
                             }
                           }
                       }
@@ -786,34 +988,6 @@ class _PublicationPage extends State<PublicationPage>{
         )
       )
     );
-  }
-
-  Future<String> uploadFile(file, uid) async{
-
-      Reference postImageRef;
-      // Create a Reference to the file
-      if(object == "voiture" || object == "location")
-      {
-        postImageRef = FirebaseStorage.instance
-          .ref()
-          .child('$object/')
-          .child('$type')
-          .child('/$uid.jpg');
-      } else 
-      {
-        postImageRef = FirebaseStorage.instance
-          .ref()
-          .child('$object')
-          .child('/$uid.jpg');
-      }
-
-      //final firebase_storage.UploadTask uploadTask = postImageRef.putFile(file);
-
-      TaskSnapshot storageTaskSnapshot = await postImageRef.putFile(file);
-    // TaskSnapshot storageTaskSnapshot =  uploadTask.snapshot;
-
-      var downloadUrl = await storageTaskSnapshot.ref.getDownloadURL();
-      return downloadUrl.toString();
   }
 
     Widget circleImage(context){
