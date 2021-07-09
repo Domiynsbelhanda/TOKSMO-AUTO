@@ -39,10 +39,12 @@ class _BookCarState extends State<BookCar> {
       body: SafeArea(
           child: Container(
             width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 16),
@@ -119,7 +121,7 @@ class _BookCarState extends State<BookCar> {
                         ),
 
                          Container(
-                          height: MediaQuery.of(context).size.width / 2,
+                          height: MediaQuery.of(context).size.width / 2.5,
                           child: PageView(
                             physics: BouncingScrollPhysics(),
                             onPageChanged: (int page){
@@ -139,7 +141,7 @@ class _BookCarState extends State<BookCar> {
                                   },
                                   child: Image.asset(
                                     path,
-                                    fit: BoxFit.fitWidth,
+                                    fit: BoxFit.fitHeight,
                                   ),
                                 ),
                               );
@@ -150,7 +152,7 @@ class _BookCarState extends State<BookCar> {
                       widget.car.image.length > 1
                       ? Container(
                         margin: EdgeInsets.symmetric(vertical: 5),
-                        height: 30,
+                        height: 15,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: buildPageIndicator(),
@@ -162,7 +164,6 @@ class _BookCarState extends State<BookCar> {
 
                         Container(
                         decoration: BoxDecoration(
-                          color: Colors.grey[100],
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

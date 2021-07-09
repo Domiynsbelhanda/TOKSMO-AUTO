@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:car_rental_rdc/screen/MainScreen.dart';
 import 'package:car_rental_rdc/widget/ProgressDialog.dart';
 import 'package:car_rental_rdc/widget/TaxiButton.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -62,7 +63,7 @@ class _RegisterPage extends State<RegisterPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -82,8 +83,7 @@ class _RegisterPage extends State<RegisterPage>{
                 Padding(
                   padding: EdgeInsets.all(MediaQuery.of(context).size.width / 22),
                   child: Card(
-                    elevation: 2.0,
-                      color: Colors.transparent,
+                    elevation: 0.0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
@@ -101,11 +101,13 @@ class _RegisterPage extends State<RegisterPage>{
                                     color: Colors.grey,
                                   ),
                                   hintStyle: TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width / 25
                                   )
                               ),
-                              style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.width / 22,
+                                  color: Colors.black),
                             ),
 
                             SizedBox(height: 5.0),
@@ -120,11 +122,13 @@ class _RegisterPage extends State<RegisterPage>{
                                     fontSize: MediaQuery.of(context).size.width / 23,
                                   ),
                                   hintStyle: TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width / 25
                                   )
                               ),
-                              style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.width / 22,
+                                  color: Colors.black),
                             ),
 
                             SizedBox(height: 5.0),
@@ -139,11 +143,13 @@ class _RegisterPage extends State<RegisterPage>{
                                     fontSize: MediaQuery.of(context).size.width / 23,
                                   ),
                                   hintStyle: TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width / 25
                                   )
                               ),
-                              style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.width / 22,
+                                  color: Colors.black),
                             ),
 
                             SizedBox(height: 5.0),
@@ -168,11 +174,13 @@ class _RegisterPage extends State<RegisterPage>{
                                     fontSize: MediaQuery.of(context).size.width / 23,
                                   ),
                                   hintStyle: TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width / 25
                                   )
                               ),
-                              style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.width / 22,
+                                  color: Colors.black),
                             ),
 
                             SizedBox(height: 5.0),
@@ -188,11 +196,13 @@ class _RegisterPage extends State<RegisterPage>{
                                     fontSize: MediaQuery.of(context).size.width / 23,
                                   ),
                                   hintStyle: TextStyle(
-                                      color: Colors.grey,
+                                      color: Colors.black,
                                       fontSize: MediaQuery.of(context).size.width / 25
                                   )
                               ),
-                              style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                              style: TextStyle(
+                                  fontSize: MediaQuery.of(context).size.width / 22,
+                                  color: Colors.black),
                             ),
 
                             SizedBox(height: 5.0),
@@ -247,7 +257,7 @@ class _RegisterPage extends State<RegisterPage>{
                     onPressed: (){
                       Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
                     },
-                    child: Text('Vous avez un compte? Log in',  style: TextStyle(color: Colors.white))
+                    child: Text('Vous avez un compte? Log in',  style: TextStyle(color: Colors.black))
                 ),
 
 
@@ -286,10 +296,8 @@ class _RegisterPage extends State<RegisterPage>{
 
       var url = await uploadFile(_image, user.uid);
 
-      DatabaseReference newUserRef = FirebaseDatabase.instance.reference().child('users/${user.uid}');
-
       //Prepare data to be saved on users table
-      Map userMap = {
+      var data = {
         'name': fullNameController.text,
         'email': emailController.text,
         'phone': phoneController.text,
@@ -297,7 +305,8 @@ class _RegisterPage extends State<RegisterPage>{
         'image': url.toString()
       };
 
-      newUserRef.set(userMap);
+      final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+      await _firestore.collection('Users').doc(user.uid.toString()).set(data);
 
       currentFirebaseUser = user;
 
@@ -343,11 +352,12 @@ class _RegisterPage extends State<RegisterPage>{
       image: DecorationImage(
         fit: BoxFit.cover,
         image: _image == null ?
-          NetworkImage("https://www.materialui.co/materialIcons/action/account_circle_white_48x48.png")
+          NetworkImage(
+              "https://firebasestorage.googleapis.com/v0/b/car-rental-rdc.appspot.com/o/account_circle_icon_137996.png?alt=media&token=bb0f8b55-fe7a-42eb-9c3a-b195f98235e8"
+          )
           : FileImage(_image)
         )
       )
     );
   }
-
 }

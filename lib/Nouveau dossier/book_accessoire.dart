@@ -31,7 +31,7 @@ class _BookCarState extends State<BookAccessoire> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[100],
       body: SafeArea(
           child: Container(
             width: double.infinity,
@@ -194,7 +194,7 @@ class _BookCarState extends State<BookAccessoire> {
                         ),
                       ),
 
-                      SizedBox(height: 20.0,),
+                      SizedBox(height: 10.0,),
 
                         contact(widget.car, context)
                       ],

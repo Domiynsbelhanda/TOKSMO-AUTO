@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:car_rental_rdc/globalvariabels.dart';
 import 'package:car_rental_rdc/widget/ProgressDialog.dart';
 import 'package:car_rental_rdc/widget/TaxiButton.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image_pickers/image_pickers.dart';
 import 'package:smart_select/smart_select.dart';
 
 import 'MainScreen.dart';
@@ -69,6 +71,9 @@ class _PublicationPage extends State<PublicationPage>{
     });
   }
 
+  List<Media> _listImagePaths;
+  List<String> images = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +93,73 @@ class _PublicationPage extends State<PublicationPage>{
                 ),
 
                 SizedBox(height: MediaQuery.of(context).size.width / 15),
-                
-                GestureDetector(
-                  child : circleImage(context),
-                  onTap: getImage
+
+                _listImagePaths == null ?
+                Center(
+                  child: GestureDetector(
+                    onTap: () async {
+                      selectImages(context);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(10.0),
+                      color: Colors.pink,
+                      child: Text(
+                        '+ Choisir 3 images'.toUpperCase(),
+                        style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width / 15,
+                            color: Colors.white
+                        ),
+                      ),
+                    ),
+                  ),
+                ) : SizedBox(),
+
+                SizedBox(height: 10),
+
+                _listImagePaths == null ?
+                Center(
+                  child: Text(
+                    'Veuillez choisir 3 images',
+                    style: TextStyle(
+                        color: Colors.white
+                    ),
+                  ),
+                )
+                    :
+                _listImagePaths != null && _listImagePaths.length < 3 ?
+                Center(
+                  child: Text(
+                    '3 images',
+                    style: TextStyle(
+                        color: Colors.white
+                    ),
+                  ),
+                )
+                    :
+                CarouselSlider(
+                  options: CarouselOptions(
+                      height: MediaQuery.of(context).size.width / 2.2,
+                      autoPlay: false,
+                      enlargeCenterPage: false,
+                      pageSnapping: true
+                  ),
+                  items: _listImagePaths.map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Card(
+                          elevation: 5.0,
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Image(
+                                image: FileImage(File(i.path)),
+                                fit: BoxFit.fitWidth,
+                              )
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
                 ),
-                Text("Image"),
 
                 Padding(
                   padding: EdgeInsets.all(10.0),
@@ -773,6 +839,29 @@ class _PublicationPage extends State<PublicationPage>{
         )
       )
     );
+  }
+
+  Future<void> selectImages(context) async {
+    await ImagePickers.pickerPaths(
+        galleryMode: GalleryMode.image,
+        selectCount: 3,
+        showGif: false,
+        showCamera: true,
+        compressSize: 500,
+        uiConfig: UIConfig(uiThemeColor: Color(0xffff0f50)),
+        cropConfig: CropConfig(enableCrop: false, width: 2, height: 1)
+    ).then((value) {
+      if(value.length < 3){
+        setState(() {
+          _listImagePaths = null;
+        });
+      }
+      else {
+        setState(() {
+          _listImagePaths = value;
+        });
+      }
+    });
   }
 
 }

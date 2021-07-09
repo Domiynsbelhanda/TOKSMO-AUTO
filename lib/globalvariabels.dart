@@ -65,14 +65,14 @@ Widget buildSpecificationCar(String title, String data, context){
         ),
 
         SizedBox(
-          height: 4,
+          height: 2,
         ),
 
         Text(
           data,
           style: TextStyle(
             color: Colors.black,
-            fontSize: MediaQuery.of(context).size.width / 23,
+            fontSize: MediaQuery.of(context).size.width / 25,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -86,83 +86,88 @@ Widget contact(car, context){
 
    String response;
 
-   return Row(
-     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-     children: [
-       Padding(
-         padding: EdgeInsets.only(left: 10.0),
-         child: GestureDetector(
-           onTap: () async{
+   return Container(
+     decoration: BoxDecoration(
+       color: Colors.grey[100],
+     ),
+     child: Row(
+       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+       children: [
+         Padding(
+           padding: EdgeInsets.only(left: 10.0),
+           child: GestureDetector(
+             onTap: () async{
 
-             response = 'tel:${car.phone}';
+               response = 'tel:${car.phone}';
 
-             if (await canLaunch(response)) {
-               await launch(response);
-             } else {
-               throw 'Could not launch $response';
-             }
-           },
-           child: Row(children: [
-             Icon(
-               FontAwesomeIcons.phone,
-               size: 30.0,
-               color: Colors.blue,
-             ),
-
-             SizedBox(width: 3.0,),
-
-             Text(
-               "Appel",
-               style: TextStyle(
+               if (await canLaunch(response)) {
+                 await launch(response);
+               } else {
+                 throw 'Could not launch $response';
+               }
+             },
+             child: Row(children: [
+               Icon(
+                 FontAwesomeIcons.phone,
+                 size: 20.0,
                  color: Colors.blue,
-                 fontSize: 20,
                ),
-             )
-           ],),
+
+               SizedBox(width: 3.0,),
+
+               Text(
+                 "Appel",
+                 style: TextStyle(
+                   color: Colors.blue,
+                   fontSize: 20,
+                 ),
+               )
+             ],),
+           ),
          ),
-       ),
 
-       Text(
-         "Or",
-         style: TextStyle(
-           color: Colors.black,
-           fontSize: 12,
+         Text(
+           "Or",
+           style: TextStyle(
+             color: Colors.black,
+             fontSize: 12,
+           ),
          ),
-       ),
 
-       Padding(
-         padding: EdgeInsets.only(left: 10.0),
-         child: GestureDetector(
-           onTap: () async{
+         Padding(
+           padding: EdgeInsets.only(left: 10.0),
+           child: GestureDetector(
+             onTap: () async{
 
-             response = url(car.phone, 'Bonjour, je suis intéressé par la ${car.marque} que vous vendez dans l\'application Ventes Véhicules.');
+               response = url(car.phone, 'Bonjour, je suis intéressé par la ${car.marque} que vous vendez dans l\'application Ventes Véhicules.');
 
-             if (await canLaunch(response)) {
-               await launch(response);
-             } else {
-               throw 'Could not launch $response';
-             }
-           },
-           child: Row(children: [
-             Icon(
-               FontAwesomeIcons.whatsapp,
-               size: 30.0,
-               color: Colors.green,
-             ),
-
-             SizedBox(width: 3.0,),
-
-             Text(
-               "Whatsapp",
-               style: TextStyle(
+               if (await canLaunch(response)) {
+                 await launch(response);
+               } else {
+                 throw 'Could not launch $response';
+               }
+             },
+             child: Row(children: [
+               Icon(
+                 FontAwesomeIcons.whatsapp,
+                 size: 30.0,
                  color: Colors.green,
-                 fontSize: 20,
                ),
-             )
-           ],),
+
+               SizedBox(width: 3.0,),
+
+               Text(
+                 "Whatsapp",
+                 style: TextStyle(
+                   color: Colors.green,
+                   fontSize: 20,
+                 ),
+               )
+             ],),
+           ),
          ),
-       ),
-     ],
+       ],
+     ),
    );
 }
 

@@ -3,6 +3,7 @@ import 'package:car_rental_rdc/models/users.dart';
 import 'package:car_rental_rdc/screen/Publication.dart';
 import 'package:car_rental_rdc/screen/serviceScreen.dart';
 import 'package:car_rental_rdc/search.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -29,27 +30,49 @@ class _MainScreen extends State<MainScreen>{
     // TODO: implement initState
     super.initState();
 
-    String userid = 'currentFirebaseUser.uid';
+    String userid = currentFirebaseUser.uid;
 
-    DatabaseReference userRef = FirebaseDatabase.instance.reference().child('users/$userid');
-    userRef.once().then((DataSnapshot snapshot){
-
-      if(snapshot.value != null){
-        setState((){
-          currentUser = Users.fromSnapshot(snapshot);
-        });
-      }
-
+    FirebaseFirestore.instance.collection('Users').doc('${userid}').snapshots()
+        .forEach((element) {
+      currentUser = Users(
+        email: element.data()['email'],
+        image: element.data()['image'],
+        fullName: element.data()['name'],
+        phone: element.data()['phone'],
+        type: element.data()['type']
+      );
     });
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[100],
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
         elevation: 0,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "AUTO E-VOITURE",
+              style: TextStyle(
+                  color: Colors.black
+              ),
+            ),
+
+            IconButton(
+                icon: Icon(
+                  FontAwesomeIcons.search,
+                  color: Colors.black,
+                ),
+                onPressed: (){})
+          ],
+        )
       ),
       drawer: Stack(
         children: [
@@ -61,10 +84,10 @@ class _MainScreen extends State<MainScreen>{
                 padding: EdgeInsets.all(10.0),
                 children: [
                   UserAccountsDrawerHeader(
-                    accountName: Text('currentUser.fullName', style: TextStyle(color: Colors.black),),
-                    accountEmail: Text('currentUser.email', style: TextStyle(color: Colors.black)),
+                    accountName: Text('${currentUser.fullName}', style: TextStyle(color: Colors.black),),
+                    accountEmail: Text('${currentUser.email}', style: TextStyle(color: Colors.black)),
                     currentAccountPicture: CircleAvatar(
-                          backgroundImage: NetworkImage('currentUser.image'),
+                          backgroundImage: NetworkImage('${currentUser.image}'),
                       ),
 
                     //onDetailsPressed: (){},
@@ -78,7 +101,7 @@ class _MainScreen extends State<MainScreen>{
 
                   Divider(),
 
-                  'currentUser.type' != "admin"
+                  '${currentUser.type.toLowerCase()}' != "admin"
                   ? Container()
                   : 
                   GestureDetector(
@@ -147,6 +170,7 @@ class _MainScreen extends State<MainScreen>{
                       Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
                       }
                     ),
+
 
                 ],
               ),

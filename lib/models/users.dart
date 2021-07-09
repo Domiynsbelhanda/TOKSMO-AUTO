@@ -19,13 +19,4 @@ class Users{
     this.type,
   });
 
-  Users.fromSnapshot(DataSnapshot snapshot){
-    id = snapshot.key;
-    phone = snapshot.value['phone'];
-    email = snapshot.value['email'];
-    fullName = snapshot.value['name'];
-    image = snapshot.value['image'];
-    type = snapshot.value['type'];
-  }
-
 }

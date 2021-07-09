@@ -32,7 +32,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: MainScreen.id,//(currentFirebaseUser == null) ? LoginPage.id : MainScreen.id,
+      initialRoute: (currentFirebaseUser == null) ? LoginPage.id : MainScreen.id,
       routes: {
           RegisterPage.id: (context) => RegisterPage(),
           MainScreen.id: (context) => MainScreen(),

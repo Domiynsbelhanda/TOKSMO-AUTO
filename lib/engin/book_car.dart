@@ -36,6 +36,9 @@ class _BookCarState extends State<BookEngin> {
       body: SafeArea(
           child: Container(
             width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.grey[100],
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -116,7 +119,7 @@ class _BookCarState extends State<BookEngin> {
                         ),
 
                         Container(
-                          height: MediaQuery.of(context).size.width / 2,
+                          height: MediaQuery.of(context).size.width / 2.5,
                           child: PageView(
                             physics: BouncingScrollPhysics(),
                             onPageChanged: (int page){

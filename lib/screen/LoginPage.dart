@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:car_rental_rdc/screen/register.dart';
 import 'package:car_rental_rdc/widget/ProgressDialog.dart';
 import 'package:car_rental_rdc/widget/TaxiButton.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -37,7 +38,7 @@ class _LoginPage extends State<LoginPage>{
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -64,11 +65,12 @@ class _LoginPage extends State<LoginPage>{
                                       fontSize: MediaQuery.of(context).size.width / 23,
                                     ),
                                     hintStyle: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.black,
                                         fontSize: MediaQuery.of(context).size.width / 25
                                     )
                                 ),
-                                style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                                style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22,
+                                    color: Colors.black),
                               ),
 
                               SizedBox(height: 5.0),
@@ -81,19 +83,20 @@ class _LoginPage extends State<LoginPage>{
                                 decoration: InputDecoration(
                                     labelText: 'Mot de passe',
                                     labelStyle: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.grey,
                                       fontSize: MediaQuery.of(context).size.width / 23,
                                     ),
                                     hintStyle: TextStyle(
-                                        color: Colors.grey,
+                                        color: Colors.black,
                                         fontSize: MediaQuery.of(context).size.width / 25
                                     )
                                 ),
-                                style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22, color: Colors.white),
+                                style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22,
+                                    color: Colors.black),
                               ),
 
 
-                              SizedBox(height: 5.0),
+                              SizedBox(height: 15.0),
 
                   TaxiButton(
                             title: reset ? 'ENVOYEZ' : 'INSCRIPTION',
@@ -149,7 +152,7 @@ class _LoginPage extends State<LoginPage>{
                           }
                         });
                       },
-                      child: Text(reset ? 'Connexion' : 'Mot de passe oublié',  style: TextStyle(color: Colors.white))
+                      child: Text(reset ? 'Connexion' : 'Mot de passe oublié',  style: TextStyle(color: Colors.black))
                   ),
 
                   SizedBox(height: 10.0),
@@ -158,7 +161,7 @@ class _LoginPage extends State<LoginPage>{
                       onPressed: (){
                         Navigator.pushNamedAndRemoveUntil(context, RegisterPage.id, (route) => false);
                       },
-                      child: Text('Vous n\'avez pas de compte, inscrivez-vous',  style: TextStyle(color: Colors.white))
+                      child: Text('Vous n\'avez pas de compte, inscrivez-vous',  style: TextStyle(color: Colors.black))
                   ),
 
 
@@ -195,13 +198,11 @@ class _LoginPage extends State<LoginPage>{
 
     if(user != null){
       // verify login
-      DatabaseReference userRef = FirebaseDatabase.instance.reference().child('users/${user.uid}');
-      userRef.once().then((DataSnapshot snapshot) {
-
-        if(snapshot.value != null){
-          Navigator.pushNamedAndRemoveUntil(context, MainScreen.id, (route) => false);
-          currentFirebaseUser = user;
-        }
+      FirebaseFirestore.instance.collection('Users').doc('${user.uid}').snapshots()
+      .forEach((element) {
+        element.data()['key'];
+        Navigator.pushNamedAndRemoveUntil(context, MainScreen.id, (route) => false);
+        currentFirebaseUser = user;
       });
 
     }
@@ -224,7 +225,9 @@ class _LoginPage extends State<LoginPage>{
       ),
       image: DecorationImage(
         fit: BoxFit.cover,
-        image: NetworkImage("https://www.materialui.co/materialIcons/action/account_circle_white_48x48.png")
+        image: NetworkImage(
+            "https://firebasestorage.googleapis.com/v0/b/car-rental-rdc.appspot.com/o/account_circle_icon_137996.png?alt=media&token=bb0f8b55-fe7a-42eb-9c3a-b195f98235e8"
+        )
         )
       )
     );
