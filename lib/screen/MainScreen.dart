@@ -102,6 +102,25 @@ class _MainScreen extends State<MainScreen>{
                   Divider(),
 
                   '${currentUser.type.toLowerCase()}' != "admin"
+                      ? Container()
+                      :
+                  GestureDetector(
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.lightBlueAccent
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(child: Text('MARQUES')),
+                          )),
+                      onTap: (){
+                        Navigator.pushNamed(context, PublicationPage.id);
+                      }
+                  ),
+
+                  SizedBox(height: 5.0),
+
+                  '${currentUser.type.toLowerCase()}' != "admin"
                   ? Container()
                   : 
                   GestureDetector(
