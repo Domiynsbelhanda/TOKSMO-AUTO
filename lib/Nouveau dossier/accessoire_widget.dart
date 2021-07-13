@@ -1,7 +1,7 @@
 import 'package:car_rental_rdc/models/data.dart';
 import 'package:flutter/material.dart';
 
-Widget buildAccessoire(Accessoire dealer, int index, context){
+Widget buildAccessoire(Vehicule dealer, int index, context){
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -19,7 +19,7 @@ Widget buildAccessoire(Accessoire dealer, int index, context){
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(dealer.image[0]),
+              image: NetworkImage(dealer.image[0]),
               fit: BoxFit.cover,
             ),
             borderRadius: BorderRadius.all(

@@ -66,7 +66,7 @@ class _AvailableCarsState extends State<AvailableCars> {
                     ),
                   ),
 
-                  searching(context, "car", getVehiculeList()),
+                  searching(context, "car", donnees),
                 ],
               ),
 
@@ -75,7 +75,7 @@ class _AvailableCarsState extends State<AvailableCars> {
               ),
 
               Text(
-                widget.type + " disponibles (" + getVehiculeList()
+                widget.type + " disponibles (" + donnees
                   .where((car) => car.marque.toLowerCase().contains(widget.type.toLowerCase()))
                   .toList()
                   .length.toString() + ")",
@@ -97,7 +97,7 @@ class _AvailableCarsState extends State<AvailableCars> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
-                  children: getVehiculeList()
+                  children: donnees
                       .where((car) => car.marque.toLowerCase().contains(widget.type.toLowerCase()))
                       .toList().map((item) {
                     return GestureDetector(

@@ -1,9 +1,11 @@
 import 'package:car_rental_rdc/location/available_cars.dart';
+import 'package:car_rental_rdc/models/data.dart';
 import 'package:car_rental_rdc/models/users.dart';
 import 'package:car_rental_rdc/screen/Publication.dart';
 import 'package:car_rental_rdc/screen/serviceScreen.dart';
 import 'package:car_rental_rdc/search.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -29,22 +31,70 @@ class _MainScreen extends State<MainScreen>{
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
+
+    data();
 
     String userid = currentFirebaseUser.uid;
 
     FirebaseFirestore.instance.collection('Users').doc('${userid}').snapshots()
         .forEach((element) {
-      currentUser = Users(
-        email: element.data()['email'],
-        image: element.data()['image'],
-        fullName: element.data()['name'],
-        phone: element.data()['phone'],
-        type: element.data()['type'],
-        id: element.id
-      );
+      setState(() {
+        currentUser = Users(
+            email: element.data()['email'],
+            image: element.data()['image'],
+            fullName: element.data()['name'],
+            phone: element.data()['phone'],
+            type: element.data()['type'],
+            id: element.id
+        );
+      });
     });
+    super.initState();
+  }
 
+  data() async {
+
+    firestore.Query collectionReference1 = await FirebaseFirestore.instance
+        .collection("Datas")
+        .orderBy('timestamp', descending: true);
+
+
+    collectionReference1
+        .snapshots()
+        .listen((data) => data.docs.forEach((doc) {
+
+
+      donnees.add(
+          new Vehicule(
+              etat: doc.data()["etat"],
+              prix: doc.data()["prix"],
+              marque: doc.data()["marque"],
+              carrosserie: doc.data()["carrosserie"],
+              modele: doc.data()["modele"],
+              poignet: doc.data()["poignet"],
+              carburant: doc.data()["carburant"],
+              couleur: doc.data()["couleur"],
+              kilometrage: doc.data()["kilometrage"],
+              boite_vitesse: doc.data()["boite_vitesse"],
+              nombre_siege: doc.data()["nombre_siege"],
+              nombre_roue: doc.data()["nombre_roue"],
+              nombre_porte: doc.data()["nombre_porte"],
+              annee: doc.data()["annee"],
+              cylindre: doc.data()["cylindre"],
+              image: doc.data()["image"],
+              disponible: doc.data()["disponible"],
+              uid: doc.data()["uid"],
+              email: doc.data()["email"],
+              phone: doc.data()["phone"],
+              user_image: doc.data()["user_image"],
+              fullName: doc.data()["fullName"],
+              objet: doc.data()["objet"],
+              type: doc.data()["type"]
+          )
+      );
+
+    })
+    );
   }
 
   @override

@@ -8,7 +8,7 @@ import '../globalvariabels.dart';
 
 class BookAccessoire extends StatefulWidget {
 
-  final Accessoire car;
+  final Vehicule car;
 
   BookAccessoire({@required this.car});
 
@@ -133,7 +133,7 @@ class _BookCarState extends State<BookAccessoire> {
                                       MaterialPageRoute(builder: (context) => ImageScreen(widget.car.image)),
                                     );
                                   },
-                                  child: Image.asset(
+                                  child: Image.network(
                                     path,
                                     fit: BoxFit.fitHeight,
                                   ),
@@ -185,7 +185,7 @@ class _BookCarState extends State<BookAccessoire> {
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   buildSpecificationCar("Prix", widget.car.prix),
-                                  buildSpecificationCars("Description", widget.car.description),
+                                  buildSpecificationCars("Description", widget.car.etat),
                                 ],
                               ),
                             ),

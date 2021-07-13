@@ -87,7 +87,7 @@ class _PublicationPage extends State<PublicationPage>{
         );
       });
     });
-  }
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -575,7 +575,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -634,7 +635,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -690,7 +692,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -738,7 +741,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -787,7 +791,8 @@ class _PublicationPage extends State<PublicationPage>{
                                   'user_image': currentUser.image,
                                   'fullName': currentUser.fullName,
                                   'objet': object,
-                                  'type': type
+                                  'type': type,
+                                  "timestamp": FieldValue.serverTimestamp(),
                                 };
 
                                 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -848,7 +853,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -904,7 +910,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -960,7 +967,8 @@ class _PublicationPage extends State<PublicationPage>{
                                     'user_image': currentUser.image,
                                     'fullName': currentUser.fullName,
                                     'objet': object,
-                                    'type': type
+                                    'type': type,
+                                    "timestamp": FieldValue.serverTimestamp(),
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

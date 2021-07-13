@@ -9,9 +9,10 @@ import '../globalvariabels.dart';
 
 class BookPiece extends StatefulWidget {
 
-  final Piece car;
+  final Vehicule car;
 
   BookPiece({@required this.car});
+
 
   @override
   _BookCarState createState() => _BookCarState();
@@ -184,7 +185,7 @@ class _BookCarState extends State<BookPiece> {
                               child: Row(
                                 children: [
                                   buildSpecificationCar("Prix", widget.car.prix),
-                                  buildSpecificationCars("Description : ", widget.car.description),
+                                  buildSpecificationCars("Description : ", widget.car.etat),
                                 ],
                               )
                             ),

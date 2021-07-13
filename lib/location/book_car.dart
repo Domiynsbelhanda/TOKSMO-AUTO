@@ -9,7 +9,7 @@ import '../globalvariabels.dart';
 
 class Location extends StatefulWidget {
 
-  final Camion car;
+  final Vehicule car;
 
   Location({@required this.car});
 
@@ -137,7 +137,7 @@ class _BookCarState extends State<Location> {
                                       MaterialPageRoute(builder: (context) => ImageScreen(widget.car.image)),
                                     );
                                   },
-                                  child: Image.asset(
+                                  child: Image.network(
                                     path,
                                     fit: BoxFit.fitHeight,
                                   ),

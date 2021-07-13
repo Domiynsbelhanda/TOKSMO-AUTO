@@ -17,6 +17,7 @@ import 'package:car_rental_rdc/track/book_car.dart';
 import 'package:car_rental_rdc/track/car_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:car_rental_rdc/engin/car_widget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../constants.dart';
 import '../search.dart';
@@ -28,19 +29,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
 
-  List<Vehicule> cars = getVehiculeList();
-  List<Engin> engin = getEnginList();
-  List<Track> track = getTrackList();
-  List<Camion> camion = getCamionList();
-  List<Piece> piece = getPieceList();
-  List<Accessoire> accessoire = getAccessoireList();
+  List<Vehicule> cars = donnees;
+  List<Vehicule> engin = donnees;
+  List<Vehicule> track = donnees;
+  List<Vehicule> camion = donnees;
+  List<Vehicule> piece = donnees;
+  List<Vehicule> accessoire = donnees;
 
   @override
   void initState() {
     super.initState();
-    setState(() {
-      
-    });
   }
 
   @override
@@ -427,16 +425,16 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildEngins(){
     List<Widget> list = [];
-    for (var i = 0; i < engin.length; i++) {
+    for (var i = 0; i < donnees.length; i++) {
       list.add(
           GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AvailableEngin(type: engin[i].marque)),
+                  MaterialPageRoute(builder: (context) => AvailableEngin(type: donnees[i].marque)),
                 );
               },
-              child: buildEngin(engin[i], i, context)
+              child: buildEngin(donnees[i], i, context)
           )
       );
     }

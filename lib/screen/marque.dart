@@ -1,4 +1,5 @@
 import 'package:car_rental_rdc/models/data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:car_rental_rdc/Nouveau dossier/available_cars.dart';
 import 'package:car_rental_rdc/track/available_cars.dart';
@@ -22,11 +23,19 @@ class _Marques extends State<Marques>{
   String type;
   _Marques(this.type);
 
-  List liste;
+  List liste = [];
 
   @override
   void initState() {
     // TODO: implement initState
+    FirebaseFirestore.instance.collection('Marques').get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        liste.add(
+          Marque(marque: '${doc["marque"]}', image: '${doc["image"]}', type: '${doc["type"]}'),
+        );
+      });
+    });
     super.initState();
   }
 
@@ -69,14 +78,14 @@ class _Marques extends State<Marques>{
                     ),
                   ),
 
-                  searching(context, widget.type, getVehiculeList()),
+                  searching(context, widget.type, donnees),
                 ],
               ),
 
               SizedBox(height: 16),
 
               Text(
-                "Marques dispo : " + getMarqueList().length.toString() + "",
+                "Marques dispo : " + liste.length.toString() + "",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: MediaQuery.of(context).size.width / 20,
@@ -95,7 +104,7 @@ class _Marques extends State<Marques>{
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
-                  children: getMarqueList().map((item) {
+                  children: liste.map((item) {
                     return GestureDetector(
                       onTap: () {
                         if(widget.type == 'car'){
@@ -147,7 +156,7 @@ class _Marques extends State<Marques>{
             child: Center(
               child: Hero(
                 tag: car.marque,
-                child: Image.asset(
+                child: Image.network(
                   car.image,
                   fit: BoxFit.fitWidth,
                 ),

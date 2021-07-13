@@ -62,7 +62,7 @@ class _AvailableCarsState extends State<AvailablePiece> {
                     ),
                   ),
 
-                  searching(context, "piece", getVehiculeList()),
+                  searching(context, "piece", donnees),
                 ],
               ),
 
@@ -71,7 +71,7 @@ class _AvailableCarsState extends State<AvailablePiece> {
               ),
 
               Text(
-                "Pieces disponibles (" + getPieceList().length.toString() + ")",
+                "Pieces disponibles (" + donnees.length.toString() + ")",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: MediaQuery.of(context).size.width / 20,
@@ -90,7 +90,7 @@ class _AvailableCarsState extends State<AvailablePiece> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
-                  children: getPieceList().map((item) {
+                  children: donnees.map((item) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(

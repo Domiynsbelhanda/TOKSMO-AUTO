@@ -2,7 +2,7 @@ import 'package:car_rental_rdc/constants.dart';
 import 'package:car_rental_rdc/models/data.dart';
 import 'package:flutter/material.dart';
 
-Widget buildTrack(Track car, int index, context){
+Widget buildTrack(Vehicule car, int index, context){
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -47,7 +47,7 @@ Widget buildTrack(Track car, int index, context){
         Container(
           height: MediaQuery.of(context).size.width / 3.5,
           child: Center(
-            child: Image.asset(
+            child: Image.network(
               car.image[0],
               fit: BoxFit.fitWidth,
             ),

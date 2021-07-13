@@ -50,12 +50,12 @@ class CustomSearchClass extends SearchDelegate{
     return SafeArea(
       child: Column(
         children: [
-          type == 'car' ? vehicules(context, query, getVehiculeList(), type)
-              : type == 'engin' ? engins(context, query, getEnginList(), type)
-              : type == 'track' ? tracks(context, query, getTrackList(), type)
-              : type == 'location' ? location(context, query, getCamionList(), type)
-              : type == 'piece' ? piecess(context, query, getPieceList(), type)
-              : type == 'accessoire' ? accessoires(context, query, getAccessoireList(), type) : null
+          type == 'car' ? vehicules(context, query, donnees, type)
+              : type == 'engin' ? engins(context, query, donnees, type)
+              : type == 'track' ? tracks(context, query, donnees, type)
+              : type == 'location' ? location(context, query, donnees, type)
+              : type == 'piece' ? piecess(context, query, donnees, type)
+              : type == 'accessoire' ? accessoires(context, query, donnees, type) : null
         ],
       ),
     );
@@ -68,12 +68,12 @@ class CustomSearchClass extends SearchDelegate{
       child: Column(
         children: [
           Text("$type : "),
-          type == 'car' ? vehicules(context, query, getVehiculeList(), type)
-              : type == 'engin' ? engins(context, query, getEnginList(), type)
-              : type == 'track' ? tracks(context, query, getTrackList(), type)
-              : type == 'location' ? location(context, query, getCamionList(), type)
-              : type == 'piece' ? piecess(context, query, getPieceList(), type)
-              : type == 'accessoire' ? accessoires(context, query, getAccessoireList(), type) : null
+          type == 'car' ? vehicules(context, query, donnees, type)
+              : type == 'engin' ? engins(context, query, donnees, type)
+              : type == 'track' ? tracks(context, query, donnees, type)
+              : type == 'location' ? location(context, query, donnees, type)
+              : type == 'piece' ? piecess(context, query, donnees, type)
+              : type == 'accessoire' ? accessoires(context, query, donnees, type) : null
         ],
       ),
     );
@@ -81,7 +81,7 @@ class CustomSearchClass extends SearchDelegate{
 
 }
 
-Widget location(context, querys, List<Camion> liste, type){
+Widget location(context, querys, List<Vehicule> liste, type){
 
   return Expanded(
     child: GridView.count(
@@ -108,7 +108,7 @@ Widget location(context, querys, List<Camion> liste, type){
   );
 }
 
-Widget engins(context, querys, List<Engin> liste, type){
+Widget engins(context, querys, List<Vehicule> liste, type){
 
 
   return Expanded(
@@ -136,7 +136,7 @@ Widget engins(context, querys, List<Engin> liste, type){
   );
 }
 
-Widget tracks(context, querys, List<Track> liste, type){
+Widget tracks(context, querys, List<Vehicule> liste, type){
 
   return Expanded(
     child: GridView.count(
@@ -190,7 +190,7 @@ Widget vehicules(context, querys, List<Vehicule> liste, type){
   );
 }
 
-Widget piecess(context, querys, List<Piece> liste, type){
+Widget piecess(context, querys, List<Vehicule> liste, type){
 
   return Expanded(
     child: GridView.count(
@@ -217,7 +217,7 @@ Widget piecess(context, querys, List<Piece> liste, type){
   );
 }
 
-Widget accessoires(context, querys, List<Accessoire> liste, type){
+Widget accessoires(context, querys, List<Vehicule> liste, type){
 
   return Expanded(
     child: GridView.count(
