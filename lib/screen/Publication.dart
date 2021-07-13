@@ -590,7 +590,8 @@ class _PublicationPage extends State<PublicationPage>{
 
                               //Prepare data to be saved on users table
 
-                            } else if(type == 'engin'){
+                            }
+                            else if(type == 'engin'){
                               showDialog(
                                 barrierDismissible: false,
                                 context: context,
@@ -645,7 +646,8 @@ class _PublicationPage extends State<PublicationPage>{
                                   Fluttertoast.showToast(msg: 'Publication effectuée');
                                 }
                               }
-                            } else if(type == 'camion'){
+                            }
+                            else if(type == 'camion'){
                               showDialog(
                                 barrierDismissible: false,
                                 context: context,
@@ -701,7 +703,8 @@ class _PublicationPage extends State<PublicationPage>{
                                 }
                               }
                             }
-                          } else if (object == 'piece'){
+                          }
+                          else if (object == 'piece'){
                             showDialog(
                                 barrierDismissible: false,
                                 context: context,
@@ -747,7 +750,8 @@ class _PublicationPage extends State<PublicationPage>{
                                   Fluttertoast.showToast(msg: 'Publication effectuée');
                                 }
                               }
-                          } else if (object == 'accessoire')
+                          }
+                          else if (object == 'accessoire')
                           {
                             showDialog(
                                 barrierDismissible: false,
@@ -795,8 +799,10 @@ class _PublicationPage extends State<PublicationPage>{
                                 Fluttertoast.showToast(msg: 'Publication effectuée');
                               }
                             }
-                          } else if (object == 'location')
+                          }
+                          else if (object == 'location')
                           {
+
                             if(type == 'vehicule'){
 
                               showDialog(
