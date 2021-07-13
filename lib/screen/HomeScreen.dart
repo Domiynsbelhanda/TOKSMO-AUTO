@@ -201,6 +201,9 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildDeals(){
     List<Widget> list = [];
+    List<Vehicule> datas = donnees
+        .where((car) => car.type.toLowerCase().contains('vehicule'))
+        .toList();
     for (var i = 0; i < cars.length; i++) {
       list.add(
         GestureDetector(
@@ -425,16 +428,19 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildEngins(){
     List<Widget> list = [];
-    for (var i = 0; i < donnees.length; i++) {
+    List<Vehicule> datas = donnees
+        .where((car) => car.type.toLowerCase().contains('engin'))
+        .toList();
+    for (var i = 0; i < datas.length; i++) {
       list.add(
           GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AvailableEngin(type: donnees[i].marque)),
+                  MaterialPageRoute(builder: (context) => AvailableEngin(type: datas[i].marque)),
                 );
               },
-              child: buildEngin(donnees[i], i, context)
+              child: buildEngin(datas[i], i, context)
           )
       );
     }
@@ -443,16 +449,19 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildTracks(){
     List<Widget> list = [];
-    for (var i = 0; i < track.length; i++) {
+    List<Vehicule> datas = donnees
+        .where((car) => car.type.toLowerCase().contains('track'))
+        .toList();
+    for (var i = 0; i < datas.length; i++) {
       list.add(
           GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BookTrack(car: track[i])),
+                  MaterialPageRoute(builder: (context) => BookTrack(car: datas[i])),
                 );
               },
-              child: buildTrack(track[i], i, context)
+              child: buildTrack(datas[i], i, context)
           )
       );
     }
@@ -461,16 +470,19 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildDealers(BuildContext context){
     List<Widget> list = [];
-    for (var i = 0; i < piece.length; i++) {
+    List<Vehicule> datas = donnees
+        .where((car) => car.objet.toLowerCase().contains('piece'))
+        .toList();
+    for (var i = 0; i < datas.length; i++) {
       list.add(
           GestureDetector(
             onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BookPiece(car: piece[i])),
+                MaterialPageRoute(builder: (context) => BookPiece(car: datas[i])),
               );
             },
-              child: buildDealer(piece[i], i, context)
+              child: buildDealer(datas[i], i, context)
           )
       );
     }
@@ -479,16 +491,19 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildAccessoires(BuildContext context){
     List<Widget> list = [];
-    for (var i = 0; i < accessoire.length; i++) {
+    List<Vehicule> datas = donnees
+        .where((car) => car.objet.toLowerCase().contains('accessoire'))
+        .toList();
+    for (var i = 0; i < datas.length; i++) {
       list.add(
           GestureDetector(
             onTap: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => BookAccessoire(car: accessoire[i])),
+                MaterialPageRoute(builder: (context) => BookAccessoire(car: datas[i])),
               );
             },
-              child: buildAccessoire(accessoire[i], i, context)
+              child: buildAccessoire(datas[i], i, context)
           )
       );
     }
@@ -563,16 +578,19 @@ class _HomeScreen extends State<HomeScreen> {
 
   List<Widget> buildLocation(){
     List<Widget> list = [];
-    for (var i = 0; i < camion.length; i++) {
+    List<Vehicule> datas = donnees
+        .where((car) => car.objet.toLowerCase().contains('location'))
+        .toList();
+    for (var i = 0; i < datas.length; i++) {
       list.add(
           GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Location(car: camion[i])),
+                  MaterialPageRoute(builder: (context) => Location(car: datas[i])),
                 );
               },
-              child: buildLocations(camion[i], i, context)
+              child: buildLocations(datas[i], i, context)
           )
       );
     }

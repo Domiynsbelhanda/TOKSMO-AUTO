@@ -111,18 +111,11 @@ class _MainScreen extends State<MainScreen>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "AUTO E-VOITURE",
+              "TOKSMO AUTO",
               style: TextStyle(
                   color: Colors.black
               ),
             ),
-
-            IconButton(
-                icon: Icon(
-                  FontAwesomeIcons.search,
-                  color: Colors.black,
-                ),
-                onPressed: (){})
           ],
         )
       ),
