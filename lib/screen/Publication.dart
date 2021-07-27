@@ -27,6 +27,7 @@ class _PublicationPage extends State<PublicationPage>{
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
 
+  var codeController = TextEditingController();
   var etatController = TextEditingController();
   var prixController = TextEditingController();
   var type_carrosserieController = TextEditingController();
@@ -43,6 +44,7 @@ class _PublicationPage extends State<PublicationPage>{
   String type = 'vehicule';
   String object = 'VOITURE';
   String marque = "Toyota";
+  String modele = "";
 
   List<S2Choice<String>> optionss = [
     S2Choice<String>(value: 'vehicule', title: 'VEHICULE'),
@@ -58,6 +60,8 @@ class _PublicationPage extends State<PublicationPage>{
   ];
 
   List<S2Choice<String>> marques = [];
+
+  List<S2Choice<String>> modeles = [];
 
   File _image;
   final picker = ImagePicker();
@@ -87,6 +91,17 @@ class _PublicationPage extends State<PublicationPage>{
         );
       });
     });
+
+    FirebaseFirestore.instance.collection('Modeles').get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        modeles.add(
+          S2Choice<String>(value: '${doc["modele"]}',
+              title: '${doc["modele"].toString().toUpperCase()} (${doc["marque"]})'),
+        );
+      });
+    });
+
     }
 
   @override
@@ -107,7 +122,7 @@ class _PublicationPage extends State<PublicationPage>{
                   onChange: (state) => setState(() => object = state.value)
                 ),
 
-                SizedBox(height: MediaQuery.of(context).size.width / 15),
+                SizedBox(height: 5.0),
 
                 _listImagePaths == null ?
                 Center(
@@ -116,7 +131,7 @@ class _PublicationPage extends State<PublicationPage>{
                       selectImages(context);
                     },
                     child: Container(
-                      padding: EdgeInsets.all(10.0),
+                      padding: EdgeInsets.all(5.0),
                       color: Colors.pink,
                       child: Text(
                         '+ Choisir 3 images'.toUpperCase(),
@@ -129,7 +144,7 @@ class _PublicationPage extends State<PublicationPage>{
                   ),
                 ) : SizedBox(),
 
-                SizedBox(height: 10),
+                SizedBox(height: 5),
 
                 _listImagePaths == null ?
                 Center(
@@ -177,17 +192,31 @@ class _PublicationPage extends State<PublicationPage>{
                 ),
 
                 Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(5.0),
                   child: SmartSelect<String>.single(
                       title: 'MARQUE : ',
                       value: marque,
                       choiceItems: marques,
-                      onChange: (state) => setState(() => marque = state.value)
+                      onChange: (state) => setState((){
+                        marque = state.value;
+                      })
                   ),
                 ),
 
                 Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(2.0),
+                  child: SmartSelect<String>.single(
+                    title: 'MODELE :',
+                    value: modele,
+                    choiceItems: modeles,
+                    onChange: (state) => setState((){
+                      modele = state.value;
+                    }),
+                  ),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.all(2.0),
                   child: Column(
                     children: [
                       object == "piece" ? Container() :
@@ -197,6 +226,25 @@ class _PublicationPage extends State<PublicationPage>{
                         value: type,
                         choiceItems: optionss,
                         onChange: (state) => setState(() => type = state.value)
+                      ),
+
+                      SizedBox(height: 3.0),
+
+                      TextField(
+                        controller: codeController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                            labelText: 'Code Produit',
+                            labelStyle: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width / 23,
+                              color: Colors.grey,
+                            ),
+                            hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: MediaQuery.of(context).size.width / 25
+                            )
+                        ),
+                        style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22),
                       ),
 
                       SizedBox(height: 5.0),
@@ -547,17 +595,18 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
-                                    'modele': modeleController.text,
+                                    'modele': modele,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,
@@ -615,11 +664,12 @@ class _PublicationPage extends State<PublicationPage>{
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
-                                    'modele': modeleController.text,
+                                    'modele': modele,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,
@@ -671,11 +721,12 @@ class _PublicationPage extends State<PublicationPage>{
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
-                                    'modele': modeleController.text,
+                                    'modele': modele,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,
@@ -729,6 +780,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
@@ -778,6 +830,7 @@ class _PublicationPage extends State<PublicationPage>{
                               images.add(url);
                               if (images.length == 3){
                                 var data = {
+                                  'code': codeController.text,
                                   'etat': etatController.text,
                                   'prix': prixController.text,
                                   'marque': marque,
@@ -831,11 +884,12 @@ class _PublicationPage extends State<PublicationPage>{
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
-                                    'modele': modeleController.text,
+                                    'modele': modele,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,
@@ -890,11 +944,12 @@ class _PublicationPage extends State<PublicationPage>{
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
-                                    'modele': modeleController.text,
+                                    'modele': modele,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,
@@ -946,11 +1001,12 @@ class _PublicationPage extends State<PublicationPage>{
                                 images.add(url);
                                 if (images.length == 3){
                                   var data = {
+                                    'code': codeController.text,
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
-                                    'modele': modeleController.text,
+                                    'modele': modele,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,

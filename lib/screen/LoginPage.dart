@@ -99,8 +99,8 @@ class _LoginPage extends State<LoginPage>{
                               SizedBox(height: 15.0),
 
                   TaxiButton(
-                            title: reset ? 'ENVOYEZ' : 'INSCRIPTION',
-                            color: Colors.black,
+                            title: reset ? 'ENVOYEZ' : 'CONNEXION',
+                            color: Colors.blue,
                             onPressed: () async{
 
                               if (reset){
@@ -152,7 +152,8 @@ class _LoginPage extends State<LoginPage>{
                           }
                         });
                       },
-                      child: Text(reset ? 'Connexion' : 'Mot de passe oublié',  style: TextStyle(color: Colors.black))
+                      child: Text(reset ? 'Connexion' : 'Mot de passe oublié',
+                          style: TextStyle(color: Colors.blue))
                   ),
 
                   SizedBox(height: 10.0),
@@ -161,7 +162,8 @@ class _LoginPage extends State<LoginPage>{
                       onPressed: (){
                         Navigator.pushNamedAndRemoveUntil(context, RegisterPage.id, (route) => false);
                       },
-                      child: Text('Vous n\'avez pas de compte, inscrivez-vous',  style: TextStyle(color: Colors.black))
+                      child: Text('Vous n\'avez pas de compte, inscrivez-vous',
+                          style: TextStyle(color: Colors.blueAccent))
                   ),
 
 
@@ -218,15 +220,10 @@ class _LoginPage extends State<LoginPage>{
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100.0),
-        border: Border.all(
-          width: 2.0,
-          style:BorderStyle.solid ,
-          color: Color.fromARGB(255, 0 , 0, 0)
-      ),
       image: DecorationImage(
         fit: BoxFit.cover,
-        image: NetworkImage(
-            "https://firebasestorage.googleapis.com/v0/b/car-rental-rdc.appspot.com/o/account_circle_icon_137996.png?alt=media&token=bb0f8b55-fe7a-42eb-9c3a-b195f98235e8"
+        image: AssetImage(
+            "assets/logo.png"
         )
         )
       )

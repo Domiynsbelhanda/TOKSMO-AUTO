@@ -62,7 +62,8 @@ class _AddingElement extends State<AddingElement>{
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MediaQuery.of(context).size.width / 15),
+                SizedBox(
+                    height: MediaQuery.of(context).size.width / 15),
 
                 GestureDetector(
                   onTap: () {

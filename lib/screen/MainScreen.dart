@@ -1,23 +1,19 @@
-import 'package:car_rental_rdc/location/available_cars.dart';
 import 'package:car_rental_rdc/models/data.dart';
 import 'package:car_rental_rdc/models/users.dart';
 import 'package:car_rental_rdc/screen/Publication.dart';
 import 'package:car_rental_rdc/screen/serviceScreen.dart';
-import 'package:car_rental_rdc/search.dart';
+import 'file:///C:/Users/Dominique%20Youness/AndroidStudioProjects/car_rental_rdc/lib/screen/HomeScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../globalvariabels.dart';
 import 'AddingElement.dart';
-import 'HomeScreen.dart';
 import 'LoginPage.dart';
+import 'Modeles.dart';
 
 class MainScreen extends StatefulWidget{
   static const String id = 'mainScreen';
@@ -113,7 +109,7 @@ class _MainScreen extends State<MainScreen>{
             Text(
               "TOKSMO AUTO",
               style: TextStyle(
-                  color: Colors.black
+                  color: Colors.blue
               ),
             ),
           ],
@@ -129,8 +125,8 @@ class _MainScreen extends State<MainScreen>{
                 padding: EdgeInsets.all(10.0),
                 children: [
                   UserAccountsDrawerHeader(
-                    accountName: Text('${currentUser.fullName}', style: TextStyle(color: Colors.black),),
-                    accountEmail: Text('${currentUser.email}', style: TextStyle(color: Colors.black)),
+                    accountName: Text('${currentUser.fullName}', style: TextStyle(color: Colors.white),),
+                    accountEmail: Text('${currentUser.email}', style: TextStyle(color: Colors.white)),
                     currentAccountPicture: CircleAvatar(
                           backgroundImage: NetworkImage('${currentUser.image}'),
                       ),
@@ -160,6 +156,25 @@ class _MainScreen extends State<MainScreen>{
                           )),
                       onTap: (){
                         Navigator.pushNamed(context, AddingElement.id);
+                      }
+                  ),
+
+                  SizedBox(height: 5.0),
+
+                  '${currentUser.type.toLowerCase()}' != "admin"
+                      ? Container()
+                      :
+                  GestureDetector(
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.lightBlueAccent
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(child: Text('MODELES')),
+                          )),
+                      onTap: (){
+                        Navigator.pushNamed(context, Modeles.id);
                       }
                   ),
 
@@ -208,7 +223,7 @@ class _MainScreen extends State<MainScreen>{
                     title: Text("LOCATION"),
                     leading: Icon(FontAwesomeIcons.carSide),
                     onTap: (){
-                      Navigator.pushNamed(context, AvailableLocation.id);
+                      //Navigator.pushNamed(context, AvailableLocation.id);
                     },
                   ),
 
