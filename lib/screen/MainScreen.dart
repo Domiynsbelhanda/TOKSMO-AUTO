@@ -2,7 +2,9 @@ import 'package:car_rental_rdc/models/data.dart';
 import 'package:car_rental_rdc/models/users.dart';
 import 'package:car_rental_rdc/screen/Publication.dart';
 import 'package:car_rental_rdc/screen/serviceScreen.dart';
-import 'file:///C:/Users/Dominique%20Youness/AndroidStudioProjects/car_rental_rdc/lib/screen/HomeScreen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import '../constants.dart';
+import '../widget/car_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +16,7 @@ import '../globalvariabels.dart';
 import 'AddingElement.dart';
 import 'LoginPage.dart';
 import 'Modeles.dart';
+import 'marque.dart';
 
 class MainScreen extends StatefulWidget{
   static const String id = 'mainScreen';
@@ -28,29 +31,9 @@ class _MainScreen extends State<MainScreen>{
   void initState() {
     // TODO: implement initState
 
-    data();
+    donnees.clear();
 
-    String userid = currentFirebaseUser.uid;
-
-    FirebaseFirestore.instance.collection('Users').doc('${userid}').snapshots()
-        .forEach((element) {
-      setState(() {
-        currentUser = Users(
-            email: element.data()['email'],
-            image: element.data()['image'],
-            fullName: element.data()['name'],
-            phone: element.data()['phone'],
-            type: element.data()['type'],
-            id: element.id
-        );
-      });
-    });
-    super.initState();
-  }
-
-  data() async {
-
-    firestore.Query collectionReference1 = await FirebaseFirestore.instance
+    Query collectionReference1 = FirebaseFirestore.instance
         .collection("Datas")
         .orderBy('timestamp', descending: true);
 
@@ -58,7 +41,6 @@ class _MainScreen extends State<MainScreen>{
     collectionReference1
         .snapshots()
         .listen((data) => data.docs.forEach((doc) {
-
 
       donnees.add(
           new Vehicule(
@@ -88,9 +70,25 @@ class _MainScreen extends State<MainScreen>{
               type: doc.data()["type"]
           )
       );
-
     })
     );
+
+    String userid = currentFirebaseUser.uid;
+
+    FirebaseFirestore.instance.collection('Users').doc('${userid}').snapshots()
+        .forEach((element) {
+      setState(() {
+        currentUser = Users(
+            email: element.data()['email'],
+            image: element.data()['image'],
+            fullName: element.data()['name'],
+            phone: element.data()['phone'],
+            type: element.data()['type'],
+            id: element.id
+        );
+      });
+    });
+    super.initState();
   }
 
   @override
@@ -277,7 +275,341 @@ class _MainScreen extends State<MainScreen>{
               )
         ],
       ),
-      body: HomeScreen(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                ),
+                child: Column(
+                  children: [
+
+                    Text(
+                      'VOITURE',
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width / 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+
+                    topVehicule(context, 'vehicule'),
+
+                    topVehicule(context, 'engin'),
+
+                    topVehicule(context, 'camion'),
+
+                    topVehicule(context, 'location'),
+
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+
+                          Text(
+                            "PIECES",
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width / 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+
+                          GestureDetector(
+                            onTap:(){
+                              //Navigator.pushNamed(context, AvailablePiece.id);
+                            },
+                            child: Row(
+                              children: [
+
+                                Text(
+                                  "Voir tout",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+
+                                SizedBox(
+                                  width: 8,
+                                ),
+
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 12,
+                                  color: kPrimaryColor,
+                                ),
+
+                              ],
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      height: MediaQuery.of(context).size.width / 2.3,
+                      margin: EdgeInsets.only(bottom: 5),
+                      child: ListView(
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        children: buildDealers(context, 'piece'),
+                      ),
+                    ),
+
+                    SizedBox(height: 5.0,),
+
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+
+                          Text(
+                            "ACCESSOIRES",
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width / 17,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+
+                          GestureDetector(
+                            onTap:(){
+                              //Navigator.pushNamed(context, AvailablePiece.id);
+                            },
+                            child: Row(
+                              children: [
+
+                                Text(
+                                  "Voir tout",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+
+                                SizedBox(
+                                  width: 8,
+                                ),
+
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 12,
+                                  color: kPrimaryColor,
+                                ),
+
+                              ],
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      height: MediaQuery.of(context).size.width / 2.3,
+                      margin: EdgeInsets.only(bottom: 5),
+                      child: ListView(
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        children: buildDealers(context, 'accessoire'),
+                      ),
+                    ),
+
+
+                    SizedBox(height: 5.0,),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
+
+  Widget topVehicule(BuildContext context, type){
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width / 25),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+
+              Text(
+                '${type.toString().toUpperCase()} : ',
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width / 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Marques(type: '$type',)),
+                  );
+                },
+                child: Row(
+                  children: [
+                    Text(
+                      "Voir tout",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: kPrimaryColor,
+                      ),
+                    ),
+
+                    SizedBox(
+                      width: 8,
+                    ),
+
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 12,
+                      color: kPrimaryColor,
+                    ),
+
+                  ],
+                ),
+              ),
+
+            ],
+          ),
+        ),
+
+        Container(
+          height: MediaQuery.of(context).size.width / 1.7,
+          child: ListView(
+            physics: BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            children: buildDeals(type),
+          ),
+        )
+      ],
+    );
+  }
+
+  List<Widget> buildDeals(String type){
+    List<Widget> list = [];
+
+    List<Vehicule> datas;
+
+    if(type.toLowerCase() == 'location'){
+      datas = donnees
+          .where((donnees) => donnees.objet.toLowerCase().contains('$type'))
+          .toList();
+    } else {
+      List<Vehicule> data = donnees
+          .where((donnees) => donnees.type.toLowerCase().contains('$type'))
+          .toList();
+      datas = data.where((data) => data.objet.toLowerCase().contains('voiture'))
+          .toList();
+    }
+    for (var i = 0; i < datas.length; i++) {
+      list.add(
+          GestureDetector(
+              onTap: () {
+                /*Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AvailableCars(type: cars[i].marque,)),
+                );*/
+              },
+              child: buildCar(datas[i], i, context)
+          )
+      );
+    }
+    return list;
+  }
+
+  List<Widget> buildDealers(BuildContext context, type){
+    List<Widget> list = [];
+    List<Vehicule> datas = donnees
+        .where((car) => car.objet.toLowerCase().contains('${type}'))
+        .toList();
+    for (var i = 0; i < datas.length; i++) {
+      list.add(
+          GestureDetector(
+              onTap: (){
+                /*Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookPiece(car: datas[i])),
+                );*/
+              },
+              child: buildDealer(datas[i], i, context)
+          )
+      );
+    }
+    return list;
+  }
+
+  Widget buildDealer(Vehicule dealer, int index, context){
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(15),
+        ),
+      ),
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.only(right: 10, left: index == 0 ? 10 : 0),
+      width: MediaQuery.of(context).size.width / 3,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(dealer.image[0]),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
+            height: MediaQuery.of(context).size.width / 5,
+            width: MediaQuery.of(context).size.width / 5,
+          ),
+
+          SizedBox(
+            height: 16,
+          ),
+
+          Text(
+            dealer.modele,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              height: 1,
+            ),
+          ),
+
+          Text(
+            dealer.prix.toString(),
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
+
+        ],
+      ),
     );
   }
 

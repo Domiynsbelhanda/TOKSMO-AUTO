@@ -191,6 +191,8 @@ class _PublicationPage extends State<PublicationPage>{
                   }).toList(),
                 ),
 
+                object == "piece" ? Container() :
+                object == "accessoire" ? Container() :
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: SmartSelect<String>.single(
@@ -203,6 +205,8 @@ class _PublicationPage extends State<PublicationPage>{
                   ),
                 ),
 
+                object == "piece" ? Container() :
+                object == "accessoire" ? Container() :
                 Padding(
                   padding: EdgeInsets.all(2.0),
                   child: SmartSelect<String>.single(
@@ -658,7 +662,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
@@ -715,7 +719,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
@@ -735,7 +739,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'nombre_roue': nombre_siegeController.text,
                                     'annee': anneeController.text,
                                     'cylindre': cylindreController.text,
-                                    'image': url.toString(),
+                                    'image': images,
                                     'disponible': true,
                                     'uid': currentUser.id,
                                     'email': currentUser.email,
@@ -774,7 +778,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
@@ -785,7 +789,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'prix': prixController.text,
                                     'marque': marque,
                                     'modele': modeleController.text,
-                                    'image': url.toString(),
+                                    'image': images,
                                     'disponible': true,
                                     'uid': currentUser.id,
                                     'email': currentUser.email,
@@ -824,7 +828,7 @@ class _PublicationPage extends State<PublicationPage>{
                               String url;
                               final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                               final TaskSnapshot uploadTask = await postImageRef
-                                  .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                  .child('${uid}_${indice}.png').putFile(File(i.path));
                               var ImageUrl = await uploadTask.ref.getDownloadURL();
                               url = ImageUrl.toString();
                               images.add(url);
@@ -836,7 +840,7 @@ class _PublicationPage extends State<PublicationPage>{
                                   'marque': marque,
                                   'modele': modeleController.text,
                                   'couleur': couleurController.text,
-                                  'image': url.toString(),
+                                  'image': images,
                                   'disponible': true,
                                   'uid': currentUser.id,
                                   'email': currentUser.email,
@@ -878,7 +882,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
@@ -938,7 +942,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
@@ -995,7 +999,7 @@ class _PublicationPage extends State<PublicationPage>{
                                 String url;
                                 final Reference postImageRef = FirebaseStorage.instance.ref().child("Datas");
                                 final TaskSnapshot uploadTask = await postImageRef
-                                    .child('${uid}_${indice}jpg').putFile(File(i.path));
+                                    .child('${uid}_${indice}.png').putFile(File(i.path));
                                 var ImageUrl = await uploadTask.ref.getDownloadURL();
                                 url = ImageUrl.toString();
                                 images.add(url);
@@ -1015,7 +1019,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'nombre_roue': nombre_siegeController.text,
                                     'annee': anneeController.text,
                                     'cylindre': cylindreController.text,
-                                    'image': url.toString(),
+                                    'image': images,
                                     'disponible': true,
                                     'uid': currentUser.id,
                                     'email': currentUser.email,

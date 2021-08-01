@@ -202,9 +202,8 @@ class _LoginPage extends State<LoginPage>{
       // verify login
       FirebaseFirestore.instance.collection('Users').doc('${user.uid}').snapshots()
       .forEach((element) {
-        element.data()['key'];
-        Navigator.pushNamedAndRemoveUntil(context, MainScreen.id, (route) => false);
         currentFirebaseUser = user;
+        Navigator.pushNamedAndRemoveUntil(context, MainScreen.id, (route) => false);
       });
 
     }
