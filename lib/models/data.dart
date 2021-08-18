@@ -1,4 +1,5 @@
 class Vehicule {
+  String code;
   String id;
   String etat;
   String prix;
@@ -27,6 +28,7 @@ class Vehicule {
   String description;
 
   Vehicule({
+    this.code,
     this.id,
     this.etat,
     this.prix,

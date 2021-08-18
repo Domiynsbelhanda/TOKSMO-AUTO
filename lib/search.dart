@@ -1,12 +1,13 @@
+import 'package:car_rental_rdc/screen/book_car.dart';
+import 'package:car_rental_rdc/widget/car_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'models/data.dart';
 
 class CustomSearchClass extends SearchDelegate{
 
-  List listing;
   String type;
-  CustomSearchClass({this.listing, this.type});
+  CustomSearchClass({this.type});
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -34,13 +35,92 @@ class CustomSearchClass extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
 
-
+    List list = donnees
+        .where(
+            (car) => car.objet.toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list2 = donnees
+        .where(
+            (car) => car.modele.toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list3 = donnees
+        .where(
+            (car) => car.marque.toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list4 = donnees
+        .where(
+            (car) => car.code.toString().toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list5 = list + list2 + list3 + list4;
+    return Expanded(
+      child: GridView.count(
+        physics: BouncingScrollPhysics(),
+        childAspectRatio: 1 / 1.55,
+        crossAxisCount: 2,
+        crossAxisSpacing: 15,
+        mainAxisSpacing: 15,
+        children: list5.map((item) {
+          return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookCar(car: item)),
+                );
+              },
+              child: buildCar(item, null, context)
+          );
+        }).toList(),
+      ),
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // you can use this method to show suggestions before the user start search or to view a real time search results as we will show later
-
+    List list = donnees
+        .where(
+            (car) => car.objet.toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list2 = donnees
+        .where(
+            (car) => car.modele.toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list3 = donnees
+        .where(
+            (car) => car.marque.toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list4 = donnees
+        .where(
+            (car) => car.code.toString().toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    List list5 = list + list2 + list3 + list4;
+    return Expanded(
+      child: GridView.count(
+        physics: BouncingScrollPhysics(),
+        childAspectRatio: 1 / 1.55,
+        crossAxisCount: 2,
+        crossAxisSpacing: 15,
+        mainAxisSpacing: 15,
+        children: list5.map((item) {
+          return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookCar(car: item)),
+                );
+              },
+              child: buildCar(item, null, context)
+          );
+        }).toList(),
+      ),
+    );
   }
 
 }

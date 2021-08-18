@@ -1,6 +1,7 @@
 import 'package:car_rental_rdc/models/data.dart';
 import 'package:car_rental_rdc/models/users.dart';
 import 'package:car_rental_rdc/screen/Publication.dart';
+import 'package:car_rental_rdc/screen/book_car.dart';
 import 'package:car_rental_rdc/screen/serviceScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../constants.dart';
@@ -16,6 +17,7 @@ import '../globalvariabels.dart';
 import 'AddingElement.dart';
 import 'LoginPage.dart';
 import 'Modeles.dart';
+import 'available_piece.dart';
 import 'marque.dart';
 
 class MainScreen extends StatefulWidget{
@@ -30,48 +32,6 @@ class _MainScreen extends State<MainScreen>{
   @override
   void initState() {
     // TODO: implement initState
-
-    donnees.clear();
-
-    Query collectionReference1 = FirebaseFirestore.instance
-        .collection("Datas")
-        .orderBy('timestamp', descending: true);
-
-
-    collectionReference1
-        .snapshots()
-        .listen((data) => data.docs.forEach((doc) {
-
-      donnees.add(
-          new Vehicule(
-              etat: doc.data()["etat"],
-              prix: doc.data()["prix"],
-              marque: doc.data()["marque"],
-              carrosserie: doc.data()["carrosserie"],
-              modele: doc.data()["modele"],
-              poignet: doc.data()["poignet"],
-              carburant: doc.data()["carburant"],
-              couleur: doc.data()["couleur"],
-              kilometrage: doc.data()["kilometrage"],
-              boite_vitesse: doc.data()["boite_vitesse"],
-              nombre_siege: doc.data()["nombre_siege"],
-              nombre_roue: doc.data()["nombre_roue"],
-              nombre_porte: doc.data()["nombre_porte"],
-              annee: doc.data()["annee"],
-              cylindre: doc.data()["cylindre"],
-              image: doc.data()["image"],
-              disponible: doc.data()["disponible"],
-              uid: doc.data()["uid"],
-              email: doc.data()["email"],
-              phone: doc.data()["phone"],
-              user_image: doc.data()["user_image"],
-              fullName: doc.data()["fullName"],
-              objet: doc.data()["objet"],
-              type: doc.data()["type"]
-          )
-      );
-    })
-    );
 
     String userid = currentFirebaseUser.uid;
 
@@ -322,7 +282,10 @@ class _MainScreen extends State<MainScreen>{
 
                           GestureDetector(
                             onTap:(){
-                              //Navigator.pushNamed(context, AvailablePiece.id);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AvailablePiece(type: 'piece',)),
+                              );
                             },
                             child: Row(
                               children: [
@@ -383,7 +346,10 @@ class _MainScreen extends State<MainScreen>{
 
                           GestureDetector(
                             onTap:(){
-                              //Navigator.pushNamed(context, AvailablePiece.id);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AvailablePiece(type: 'accessoire',)),
+                              );
                             },
                             child: Row(
                               children: [
@@ -525,10 +491,10 @@ class _MainScreen extends State<MainScreen>{
       list.add(
           GestureDetector(
               onTap: () {
-                /*Navigator.push(
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AvailableCars(type: cars[i].marque,)),
-                );*/
+                  MaterialPageRoute(builder: (context) => BookCar(car: datas[i])),
+                );
               },
               child: buildCar(datas[i], i, context)
           )
@@ -546,10 +512,10 @@ class _MainScreen extends State<MainScreen>{
       list.add(
           GestureDetector(
               onTap: (){
-                /*Navigator.push(
+                Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BookPiece(car: datas[i])),
-                );*/
+                  MaterialPageRoute(builder: (context) => BookCar(car: datas[i])),
+                );
               },
               child: buildDealer(datas[i], i, context)
           )

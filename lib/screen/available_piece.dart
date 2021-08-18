@@ -1,53 +1,28 @@
-import 'package:car_rental_rdc/models/data.dart';
-import 'package:car_rental_rdc/screen/VoitureModele.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:car_rental_rdc/globalvariabels.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:car_rental_rdc/models/data.dart';
+import 'package:flutter/material.dart';
 
-class Marques extends StatefulWidget{
+import 'book_car.dart';
 
-  static const String id = 'marques';
+class AvailablePiece extends StatefulWidget {
+
+  static const String id = 'piece';
 
   String type;
-  Marques({this.type});
+  AvailablePiece({this.type});
 
   @override
-  _Marques createState() => _Marques(type);
-
+  _AvailableCarsState createState() => _AvailableCarsState();
 }
 
-class _Marques extends State<Marques>{
-
-  String type;
-  _Marques(this.type);
-
-  List liste = [];
+class _AvailableCarsState extends State<AvailablePiece> {
 
   @override
   void initState() {
-    // TODO: implement initState
-
-    Query collectionReference1 = FirebaseFirestore.instance
-        .collection("Marques")
-        .where('type', isEqualTo: '${type.toLowerCase()}');
-
-
-    collectionReference1
-        .snapshots()
-        .listen((data) => data.docs.forEach((doc){
-      setState(() {
-        liste.add(
-          Marque(
-              marque: '${doc.data()["marque"]}',
-              image: '${doc.data()["image"]}',
-              type: '${doc.data()["type"]}'),
-        );
-      });
-    })
-  );
-
     super.initState();
+    setState(() {
+
+    });
   }
 
   @override
@@ -61,6 +36,7 @@ class _Marques extends State<Marques>{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -89,14 +65,21 @@ class _Marques extends State<Marques>{
                     ),
                   ),
 
-                  searching(context, widget.type),
+                  searching(context, "piece"),
                 ],
               ),
 
-              SizedBox(height: 16),
+              SizedBox(
+                height: 16,
+              ),
 
               Text(
-                '${type} dispo : ' + liste.length.toString() + "",
+                widget.type.toUpperCase() + " disponibles (" + donnees
+                    .where(
+                        (car) => car.objet.toLowerCase()
+                        .contains(widget.type.toLowerCase()))
+                    .toList()
+                    .length.toString() + ")",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: MediaQuery.of(context).size.width / 20,
@@ -111,32 +94,36 @@ class _Marques extends State<Marques>{
               Expanded(
                 child: GridView.count(
                   physics: BouncingScrollPhysics(),
-                  childAspectRatio: 1 / 1,
+                  childAspectRatio: 1 / 1.55,
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 15,
-                  children: liste.map((item) {
+                  children: donnees
+                      .where(
+                          (car) => car.objet.toLowerCase()
+                          .contains(widget.type.toLowerCase()))
+                      .toList().map((item) {
                     return GestureDetector(
                       onTap: () {
-                          Navigator.push(
-                            context, 
-                            MaterialPageRoute(builder: (context) => Model(modele: item.marque)),
-                          );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BookCar(car: item)),
+                        );
                       },
-                      child: buildMarque(item, null, context)
+                      child: buildDealer(item, null, context)
                     );
                   }).toList(),
                 ),
               ),
+
             ],
           ),
         ),
       ),
-
     );
   }
 
-  Widget buildMarque(Marque car, int index, context){
+  Widget buildDealer(Vehicule dealer, int index, context){
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -144,27 +131,47 @@ class _Marques extends State<Marques>{
           Radius.circular(15),
         ),
       ),
-      padding: EdgeInsets.all(MediaQuery.of(context).size.width / 22),
-      margin: EdgeInsets.only(right: index != null ? MediaQuery.of(context).size.width / 25 : 0, left: index == 0 ? MediaQuery.of(context).size.width / 25   : 0),
-      height: MediaQuery.of(context).size.width / 2,
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.only(right: 10, left: index == 0 ? 10 : 0),
+      width: MediaQuery.of(context).size.width / 3,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+
           Container(
-            height: MediaQuery.of(context).size.width / 3,
-            child: Center(
-              child: Hero(
-                tag: car.marque,
-                child: Image.network(
-                  car.image,
-                  fit: BoxFit.fitWidth,
-                ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(dealer.image[0]),
+                fit: BoxFit.cover,
               ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
+            height: MediaQuery.of(context).size.width / 5,
+            width: MediaQuery.of(context).size.width / 5,
+          ),
+
+          SizedBox(
+            height: 16,
+          ),
+
+          Text(
+            dealer.modele,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              height: 1,
             ),
           ),
 
-          Text('${car.marque}')
+          Text(
+            dealer.prix.toString(),
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey,
+            ),
+          ),
 
         ],
       ),

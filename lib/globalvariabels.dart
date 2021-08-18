@@ -221,13 +221,13 @@ Widget contact(car, context){
    );
 }
 
-Widget searching(context, types, liste){
+Widget searching(context, types){
    return Container(
      child: GestureDetector(
        onTap: (){
          showSearch(
            context: context,
-           delegate: CustomSearchClass(type: types, listing: liste),
+           delegate: CustomSearchClass(type: types),
          );
        },
        child: Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 class ImageScreen extends StatefulWidget{
 
-  List<String> images;
+  List images;
   ImageScreen(this.images);
 
   @override
@@ -67,7 +67,7 @@ class _ImageScreen extends State<ImageScreen>{
                   children: widget.images.map((path) {
                     return Container(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Image.asset(
+                      child: Image.network(
                         path,
                         fit: BoxFit.fitWidth,
                       ),

@@ -1,4 +1,5 @@
 import 'package:car_rental_rdc/models/data.dart';
+import 'package:car_rental_rdc/screen/voitureDispo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -85,7 +86,7 @@ class _Model extends State<Model>{
                     ),
                   ),
 
-                  searching(context, widget.modele, donnees),
+                  searching(context, widget.modele),
                 ],
               ),
 
@@ -113,7 +114,12 @@ class _Model extends State<Model>{
                   mainAxisSpacing: 15,
                   children: liste.map((item){
                     return GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => VoitureDispo(type: '${item.modele}',)),
+                        );
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
