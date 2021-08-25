@@ -55,7 +55,8 @@ Future<void> main() async {
             user_image: doc.data()["user_image"],
             fullName: doc.data()["fullName"],
             objet: doc.data()["objet"],
-            type: doc.data()["type"]
+            type: doc.data()["type"],
+            lieu: doc.data()['lieu']
         )
     );
   })

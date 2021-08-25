@@ -181,7 +181,7 @@ class _BookCarState extends State<BookCar> {
                                   widget.car.prix.toString()== 'null' ? Container() :
                                       buildSpecificationCar("Prix", widget.car.prix.toString(), context),
                                   widget.car.etat.toString()== 'null' ? Container() :
-                                      buildSpecificationCar("Etat", widget.car.etat, context),
+                                      buildSpecificationCar("Description", widget.car.etat, context),
                                   widget.car.carrosserie.toString()== 'null' ? Container() :
                                       buildSpecificationCar("Carros", widget.car.carrosserie, context),
                                   widget.car.marque.toString()== 'null' ? Container() :
@@ -217,6 +217,10 @@ class _BookCarState extends State<BookCar> {
                                       buildSpecificationCar("Nbre Roue", widget.car.nombre_roue.toString(), context),
                                   widget.car.cylindre.toString()== 'null' ? Container() :
                                       buildSpecificationCar("Cylindre", widget.car.cylindre, context),
+                                  widget.car.lieu.toString()== 'null' ? Container() :
+                                      buildSpecificationCar("Lieu / Modele", widget.car.lieu, context),
+                                  widget.car.conduite.toString()== 'null' ? Container() :
+                                      buildSpecificationCar("Conduite", widget.car.conduite, context),
                                 ],
                               ),
                             ),

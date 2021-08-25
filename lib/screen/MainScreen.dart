@@ -178,18 +178,24 @@ class _MainScreen extends State<MainScreen>{
                   ),
 
                   ListTile(
-                    title: Text("LOCATION"),
-                    leading: Icon(FontAwesomeIcons.carSide),
-                    onTap: (){
-                      //Navigator.pushNamed(context, AvailableLocation.id);
-                    },
-                  ),
-
-                  ListTile(
                     title: Text("CONTACTEZ-NOUS", style: TextStyle(color: Colors.green,)),
                     leading: Icon(FontAwesomeIcons.whatsapp, color: Colors.green,),
                     onTap: () async{
                       String response = url('+243996852377', 'Bonjour, j\'ai besoin d\'information sur votre application.');
+                      
+                      if (await canLaunch(response)) {
+                        await launch(response);
+                      } else {
+                        throw 'Could not launch $response';
+                      }
+                    },
+                  ),
+
+                  ListTile(
+                    title: Text("CONTACTEZ-NOUS", style: TextStyle(color: Colors.grey,)),
+                    leading: Icon(FontAwesomeIcons.phone, color: Colors.grey,),
+                    onTap: () async{
+                      String response = 'tel:+243996852377';
                       
                       if (await canLaunch(response)) {
                         await launch(response);

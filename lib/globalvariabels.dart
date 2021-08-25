@@ -55,7 +55,8 @@ data() async {
             user_image: doc.data()["user_image"],
             fullName: doc.data()["fullName"],
             objet: doc.data()["objet"],
-            type: doc.data()["type"]
+            type: doc.data()["type"],
+            lieu: doc.data()['lieu']
         )
     );
 
@@ -189,7 +190,9 @@ Widget contact(car, context){
            child: GestureDetector(
              onTap: () async{
 
-               response = url(car.phone, 'Bonjour, je suis intéressé par la ${car.marque} que vous vendez dans l\'application Ventes Véhicules.');
+               response = url(
+                 car.phone, 
+                 'Bonjour, je suis intéressé par votre véhicule ${car.marque}, ${car.modele} 《code ${car.code}》que vous vendez dans l\'application TOKSMO -AUTO');
 
                if (await canLaunch(response)) {
                  await launch(response);

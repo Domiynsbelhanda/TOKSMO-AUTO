@@ -41,6 +41,7 @@ class _PublicationPage extends State<PublicationPage>{
   var nombre_porteController = TextEditingController();
   var anneeController = TextEditingController();
   var cylindreController = TextEditingController();
+  var conduiteController = TextEditingController();
   String type = 'vehicule';
   String object = 'VOITURE';
   String marque = "Toyota";
@@ -257,7 +258,7 @@ class _PublicationPage extends State<PublicationPage>{
                         controller: etatController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                          labelText: object == "piece" ? 'Etat' : 'Etat ($type)',
+                          labelText: object == "piece" ? 'Description' : 'Description ($type)',
                           labelStyle: TextStyle(
                             fontSize: MediaQuery.of(context).size.width / 23,
                             color: Colors.grey,
@@ -320,7 +321,7 @@ class _PublicationPage extends State<PublicationPage>{
                         controller: modeleController,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                          labelText: 'Modele',
+                          labelText: object == 'voiture' || object =='location' ? 'Lieu' : 'Modele',
                           labelStyle: TextStyle(
                             fontSize: MediaQuery.of(context).size.width / 23,
                             color: Colors.grey,
@@ -378,6 +379,26 @@ class _PublicationPage extends State<PublicationPage>{
                         ),
                         style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22),
                       ),
+
+                      SizedBox(height: 5.0),
+
+                      object == "location" ?
+                      TextField(
+                        controller: conduiteController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          labelText: 'Conduite',
+                          labelStyle: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width / 23,
+                            color: Colors.grey,
+                          ),
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: MediaQuery.of(context).size.width / 25
+                          )
+                        ),
+                        style: TextStyle(fontSize: MediaQuery.of(context).size.width / 22),
+                      ) : SizedBox(),
 
                       object == "piece" ? Container() :
                       SizedBox(height: 5.0),
@@ -609,6 +630,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
+                                    'lieu': modeleController.text,
                                     'carrosserie': type_carrosserieController.text,
                                     'modele': modele,
                                     'poignet': poignetController.text,
@@ -672,6 +694,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
+                                    'lieu': modeleController.text,
                                     'carrosserie': type_carrosserieController.text,
                                     'modele': modele,
                                     'poignet': poignetController.text,
@@ -729,6 +752,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
+                                    'lieu': modeleController.text,
                                     'carrosserie': type_carrosserieController.text,
                                     'modele': modele,
                                     'poignet': poignetController.text,
@@ -894,6 +918,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'marque': marque,
                                     'carrosserie': type_carrosserieController.text,
                                     'modele': modele,
+                                    'lieu': modeleController.text,
                                     'poignet': poignetController.text,
                                     'carburant': carburantController.text,
                                     'couleur': couleurController.text,
@@ -913,6 +938,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'objet': object,
                                     'type': type,
                                     "timestamp": FieldValue.serverTimestamp(),
+                                    "conduite": conduiteController.text,
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -952,6 +978,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
+                                    'lieu': modeleController.text,
                                     'carrosserie': type_carrosserieController.text,
                                     'modele': modele,
                                     'poignet': poignetController.text,
@@ -971,6 +998,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'objet': object,
                                     'type': type,
                                     "timestamp": FieldValue.serverTimestamp(),
+                                    "conduite": conduiteController.text,
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -1009,6 +1037,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'etat': etatController.text,
                                     'prix': prixController.text,
                                     'marque': marque,
+                                    'lieu': modeleController.text,
                                     'carrosserie': type_carrosserieController.text,
                                     'modele': modele,
                                     'poignet': poignetController.text,
@@ -1029,6 +1058,7 @@ class _PublicationPage extends State<PublicationPage>{
                                     'objet': object,
                                     'type': type,
                                     "timestamp": FieldValue.serverTimestamp(),
+                                    "conduite": conduiteController.text,
                                   };
 
                                   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

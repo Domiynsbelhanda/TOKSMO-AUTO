@@ -310,8 +310,7 @@ class _RegisterPage extends State<RegisterPage>{
 
       currentFirebaseUser = user;
 
-      Navigator.pushNamed(context, MainScreen.id);
-
+      Navigator.pushNamedAndRemoveUntil(context, MainScreen.id, (route) => false);
     }
   }
 

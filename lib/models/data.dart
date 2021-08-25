@@ -26,6 +26,8 @@ class Vehicule {
   String objet;
   String nombre_roue;
   String description;
+  String lieu;
+  String conduite;
 
   Vehicule({
     this.code,
@@ -54,7 +56,9 @@ class Vehicule {
     this.type,
     this.objet,
     this.nombre_roue,
-    this.description
+    this.description,
+    this.lieu,
+    this.conduite
   });
 }
 
