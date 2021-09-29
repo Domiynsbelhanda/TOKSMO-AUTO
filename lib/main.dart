@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:car_rental_rdc/globalvariabels.dart';
 import 'package:car_rental_rdc/screen/AddingElement.dart';
 import 'package:car_rental_rdc/screen/LoginPage.dart';
@@ -56,7 +57,8 @@ Future<void> main() async {
             fullName: doc.data()["fullName"],
             objet: doc.data()["objet"],
             type: doc.data()["type"],
-            lieu: doc.data()['lieu']
+            lieu: doc.data()['lieu'],
+            code: doc.data()['code']
         )
     );
   })
@@ -70,8 +72,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: (currentFirebaseUser == null) ? LoginPage.id : MainScreen.id,
+      initialRoute: Splash.id,
       routes: {
+          Splash.id: (context) => Splash(),
           RegisterPage.id: (context) => RegisterPage(),
           MainScreen.id: (context) => MainScreen(),
           LoginPage.id: (context) => LoginPage(),
@@ -82,4 +85,29 @@ class App extends StatelessWidget {
         },
     );
   }
+}
+
+class Splash extends StatefulWidget {
+  static const String id = 'splash';
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _Splash();
+  }
+}
+
+class _Splash extends State<Splash>{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return AnimatedSplashScreen(
+        duration: 3000,
+        splash: 'assets/logo.png',
+        nextScreen: (currentFirebaseUser == null) ? LoginPage() : MainScreen(),
+        splashTransition: SplashTransition.slideTransition,
+        centered: true,
+        backgroundColor: Colors.white);
+  }
+
 }
