@@ -99,7 +99,7 @@ class _serviceScreen extends State<ServiceScreen>{
                           Text(
                             title,
                             style: TextStyle(
-                              fontSize: 25.0,
+                              fontSize: 35.0,
                               backgroundColor: Colors.white
                             ),
                             )

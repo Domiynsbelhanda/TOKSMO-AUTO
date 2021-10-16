@@ -29,7 +29,7 @@ Widget buildCar(Vehicule car, int index, context){
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     child: Text(
-                      car.prix,
+                      '${car.prix}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: MediaQuery.of(context).size.width / 30,
@@ -59,7 +59,7 @@ Widget buildCar(Vehicule car, int index, context){
         ),
 
         Text(
-          car.marque,
+          '${car.marque}',
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width / 25
           ),
@@ -69,7 +69,7 @@ Widget buildCar(Vehicule car, int index, context){
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              car.modele,
+              '${car.modele}',
               style: TextStyle(
                 fontSize: MediaQuery.of(context).size.width / 23,
                 fontWeight: FontWeight.bold,

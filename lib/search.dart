@@ -35,27 +35,35 @@ class CustomSearchClass extends SearchDelegate{
   @override
   Widget buildResults(BuildContext context) {
 
-    List list = donnees
-        .where(
-            (car) => car.objet.toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list2 = donnees
-        .where(
-            (car) => car.modele.toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list3 = donnees
-        .where(
-            (car) => car.marque.toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list4 = donnees
-        .where(
-            (car) => car.code.toString().toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list5 = list + list2 + list3 + list4;
+    List list5;
+
+    if(query == ''){
+
+    } else {
+      List list = donnees
+          .where(
+              (car) => car.objet.toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+      List list2 = donnees
+          .where(
+              (car) => car.modele.toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+      List list3 = donnees
+          .where(
+              (car) => car.marque.toString() == 'null' ?
+          car.marque.toString().contains("a")
+              : car.marque.toLowerCase()
+              .contains(query.toLowerCase())
+      ).toList();
+      List list4 = donnees
+          .where(
+              (car) => car.code.toString().toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+      list5 = list + list2 + list3 + list4;
+    }
     return Expanded(
       child: GridView.count(
         physics: BouncingScrollPhysics(),
@@ -63,7 +71,7 @@ class CustomSearchClass extends SearchDelegate{
         crossAxisCount: 2,
         crossAxisSpacing: 15,
         mainAxisSpacing: 15,
-        children: list5.map((item) {
+        children: list5.toString() == 'null' ? [] : list5.map((item) {
           return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -80,27 +88,37 @@ class CustomSearchClass extends SearchDelegate{
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List list = donnees
-        .where(
-            (car) => car.objet.toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list2 = donnees
-        .where(
-            (car) => car.modele.toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list3 = donnees
-        .where(
-            (car) => car.marque.toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list4 = donnees
-        .where(
-            (car) => car.code.toString().toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    List list5 = list + list2 + list3 + list4;
+
+    List list5;
+
+    if(query == ''){
+
+    } else {
+      List list = donnees
+          .where(
+              (car) => car.objet.toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+      List list2 = donnees
+          .where(
+              (car) => car.modele.toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+      List list3 = donnees
+          .where(
+              (car) => car.marque.toString() == 'null' ?
+              car.marque.toString().contains("a")
+                  : car.marque.toLowerCase()
+              .contains(query.toLowerCase())
+      ).toList();
+      List list4 = donnees
+          .where(
+              (car) => car.code.toString().toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+      list5 = list + list2 + list3 + list4;
+    }
+
     return Expanded(
       child: GridView.count(
         physics: BouncingScrollPhysics(),
@@ -108,7 +126,7 @@ class CustomSearchClass extends SearchDelegate{
         crossAxisCount: 2,
         crossAxisSpacing: 15,
         mainAxisSpacing: 15,
-        children: list5.map((item) {
+        children: list5.toString() == 'null' ? [] : list5.map((item) {
           return GestureDetector(
               onTap: () {
                 Navigator.push(

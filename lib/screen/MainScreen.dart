@@ -5,6 +5,7 @@ import 'package:car_rental_rdc/screen/book_car.dart';
 import 'package:car_rental_rdc/screen/serviceScreen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../constants.dart';
+import '../search.dart';
 import '../widget/car_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
@@ -71,7 +72,31 @@ class _MainScreen extends State<MainScreen>{
               ),
             ),
           ],
-        )
+        ),
+        actions: [
+      Container(
+      child: GestureDetector(
+      onTap: (){
+    showSearch(
+    context: context,
+    delegate: CustomSearchClass(type: 'types'),
+    );
+    },
+      child: Padding(
+        padding: EdgeInsets.all(5),
+        child: Row(
+          children: [
+            IconButton(
+              icon: Icon(
+                Icons.search,
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+    )
+        ]
       ),
       drawer: Stack(
         children: [
@@ -234,7 +259,7 @@ class _MainScreen extends State<MainScreen>{
                       }
                   },
                   child: Text(
-                    "Version 1.0.0 \n by Dominique Youness\n +243 996 852 377",
+                    "Version 1.0.0 \n by Dominique Youness\n www.domiyns.com",
                     style: TextStyle(fontSize: 10.0, color: Colors.grey),
                     ),
                 )
