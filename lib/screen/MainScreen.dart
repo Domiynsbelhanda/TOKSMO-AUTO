@@ -34,21 +34,23 @@ class _MainScreen extends State<MainScreen>{
   void initState() {
     // TODO: implement initState
 
-    String userid = currentFirebaseUser.uid;
+    if(currentFirebaseUser != null){
+      String userid = currentFirebaseUser.uid;
 
-    FirebaseFirestore.instance.collection('Users').doc('${userid}').snapshots()
-        .forEach((element) {
-      setState(() {
-        currentUser = Users(
-            email: element.data()['email'],
-            image: element.data()['image'],
-            fullName: element.data()['name'],
-            phone: element.data()['phone'],
-            type: element.data()['type'],
-            id: element.id
-        );
+      FirebaseFirestore.instance.collection('Users').doc('${userid}').snapshots()
+          .forEach((element) {
+        setState(() {
+          currentUser = Users(
+              email: element.data()['email'],
+              image: element.data()['image'],
+              fullName: element.data()['name'],
+              phone: element.data()['phone'],
+              type: element.data()['type'],
+              id: element.id
+          );
+        });
       });
-    });
+    }
     super.initState();
   }
 
@@ -63,12 +65,13 @@ class _MainScreen extends State<MainScreen>{
         elevation: 0,
         brightness: Brightness.dark,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "TOKSMO AUTO",
               style: TextStyle(
-                  color: Colors.blue
+                  color: Colors.blue,
+                  fontSize: MediaQuery.of(context).size.width / 18
               ),
             ),
           ],
@@ -107,7 +110,7 @@ class _MainScreen extends State<MainScreen>{
               child: ListView(
                 padding: EdgeInsets.all(10.0),
                 children: [
-                  UserAccountsDrawerHeader(
+                  /*UserAccountsDrawerHeader(
                     accountName: Text('${currentUser.fullName}', style: TextStyle(color: Colors.white),),
                     accountEmail: Text('${currentUser.email}', style: TextStyle(color: Colors.white)),
                     currentAccountPicture: CircleAvatar(
@@ -123,8 +126,9 @@ class _MainScreen extends State<MainScreen>{
                         fit: BoxFit.cover)
                   ),),
 
-                  Divider(),
+                  Divider(),*/
 
+                  currentUser != null ?
                   '${currentUser.type.toLowerCase()}' != "admin"
                       ? Container()
                       :
@@ -140,10 +144,12 @@ class _MainScreen extends State<MainScreen>{
                       onTap: (){
                         Navigator.pushNamed(context, AddingElement.id);
                       }
-                  ),
+                  )
+                  : Container(),
 
                   SizedBox(height: 5.0),
 
+                  currentUser != null?
                   '${currentUser.type.toLowerCase()}' != "admin"
                       ? Container()
                       :
@@ -159,10 +165,12 @@ class _MainScreen extends State<MainScreen>{
                       onTap: (){
                         Navigator.pushNamed(context, Modeles.id);
                       }
-                  ),
+                  )
+                      : Container(),
 
                   SizedBox(height: 5.0),
 
+                  currentUser != null ?
                   '${currentUser.type.toLowerCase()}' != "admin"
                   ? Container()
                   : 
@@ -178,13 +186,14 @@ class _MainScreen extends State<MainScreen>{
                     onTap: (){
                       Navigator.pushNamed(context, PublicationPage.id);
                       }
-                    ),
+                    )
+                  : Container(),
 
                   ListTile(
                     title: Text("VENDRE"),
                     leading: Icon(FontAwesomeIcons.buysellads),
                     onTap: () async{
-                      String response = url('+243996852377', 'Bonjour j\'aimerais vendre un article sur votre application.');
+                      String response = url('+243893890266', 'Bonjour j\'aimerais vendre un article sur votre application.');
                       
                       if (await canLaunch(response)) {
                         await launch(response);
@@ -206,7 +215,7 @@ class _MainScreen extends State<MainScreen>{
                     title: Text("CONTACTEZ-NOUS", style: TextStyle(color: Colors.green,)),
                     leading: Icon(FontAwesomeIcons.whatsapp, color: Colors.green,),
                     onTap: () async{
-                      String response = url('+243996852377', 'Bonjour, j\'ai besoin d\'information sur votre application.');
+                      String response = url('+243893890266', 'Bonjour, j\'ai besoin d\'information sur votre application.');
                       
                       if (await canLaunch(response)) {
                         await launch(response);
@@ -220,7 +229,7 @@ class _MainScreen extends State<MainScreen>{
                     title: Text("CONTACTEZ-NOUS", style: TextStyle(color: Colors.grey,)),
                     leading: Icon(FontAwesomeIcons.phone, color: Colors.grey,),
                     onTap: () async{
-                      String response = 'tel:+243996852377';
+                      String response = 'tel:+243893890266';
                       
                       if (await canLaunch(response)) {
                         await launch(response);
@@ -230,6 +239,7 @@ class _MainScreen extends State<MainScreen>{
                     },
                   ),
 
+                  currentUser != null ?
                   ListTile(
                     title: Text('Déconnexion'),
                     leading: Icon(FontAwesomeIcons.signOutAlt),
@@ -237,7 +247,7 @@ class _MainScreen extends State<MainScreen>{
                       FirebaseAuth.instance.signOut();
                       Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
                       }
-                    ),
+                    ) : Container(),
 
 
                 ],
@@ -250,6 +260,7 @@ class _MainScreen extends State<MainScreen>{
                 left: 5.0,
                 child: GestureDetector(
                   onTap: () async{
+                    Navigator.pushNamedAndRemoveUntil(context, LoginPage.id, (route) => false);
                      String response = url('+243996852377', 'Bonjour Dominique Youness');
                       
                       if (await canLaunch(response)) {
@@ -280,7 +291,7 @@ class _MainScreen extends State<MainScreen>{
                   children: [
 
                     Text(
-                      'VOITURE',
+                      'VEHICULE',
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width / 17,
                         fontWeight: FontWeight.bold,
@@ -446,7 +457,7 @@ class _MainScreen extends State<MainScreen>{
             children: [
 
               Text(
-                '${type.toString().toUpperCase()} : ',
+                type == 'vehicule' ? 'VOITURE' : '${type.toString().toUpperCase()} : ',
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width / 20,
                   fontWeight: FontWeight.bold,

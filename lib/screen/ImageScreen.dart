@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
+
 class ImageScreen extends StatefulWidget{
 
   List images;
@@ -56,7 +58,7 @@ class _ImageScreen extends State<ImageScreen>{
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height - 120,
                 child: PageView(
                   physics: BouncingScrollPhysics(),
                   onPageChanged: (int page){
@@ -67,9 +69,10 @@ class _ImageScreen extends State<ImageScreen>{
                   children: widget.images.map((path) {
                     return Container(
                       padding: EdgeInsets.symmetric(horizontal: 15.0),
-                      child: Image.network(
-                        path,
-                        fit: BoxFit.fitWidth,
+                      child: PhotoView(
+                        imageProvider: NetworkImage(
+                          path,
+                        )
                       ),
                     );
                   }).toList(),

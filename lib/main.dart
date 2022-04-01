@@ -104,7 +104,8 @@ class _Splash extends State<Splash>{
     return AnimatedSplashScreen(
         duration: 3000,
         splash: 'assets/logo.png',
-        nextScreen: (currentFirebaseUser == null) ? LoginPage() : MainScreen(),
+        //nextScreen: (currentFirebaseUser == null) ? LoginPage() : MainScreen(),
+        nextScreen: MainScreen(),
         splashTransition: SplashTransition.slideTransition,
         centered: true,
         backgroundColor: Colors.white);

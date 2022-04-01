@@ -64,7 +64,7 @@ class CustomSearchClass extends SearchDelegate{
           .toList();
       list5 = list + list2 + list3 + list4;
     }
-    return Expanded(
+    return Container(
       child: GridView.count(
         physics: BouncingScrollPhysics(),
         childAspectRatio: 1 / 1.55,
@@ -119,7 +119,7 @@ class CustomSearchClass extends SearchDelegate{
       list5 = list + list2 + list3 + list4;
     }
 
-    return Expanded(
+    return Container(
       child: GridView.count(
         physics: BouncingScrollPhysics(),
         childAspectRatio: 1 / 1.55,

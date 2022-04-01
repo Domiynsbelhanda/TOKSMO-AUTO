@@ -1,0 +1,76 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.leeson.image_pickers" >
+4
+5    <uses-sdk android:minSdkVersion="19" />
+5-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml
+6
+7    <uses-permission android:name="android.permission.CAMERA" />
+7-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:3:5-65
+7-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:3:22-62
+8    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+8-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:4:5-71
+8-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:4:22-68
+9    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+9-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:5:5-80
+9-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:5:22-77
+10    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+10-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:6:5-81
+10-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:6:22-78
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:7:5-67
+11-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:7:22-64
+12
+13    <application android:networkSecurityConfig="@xml/net_sec" >
+13-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:9:5-28:19
+13-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:10:9-53
+14
+15        <!-- 适配9.0的系统 -->
+16        <uses-library
+16-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:12:9-88
+17            android:name="org.apache.http.legacy"
+17-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:12:23-60
+18            android:required="false" />
+18-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:12:61-85
+19        <!-- 适配9.0的系统 -->
+20        <activity
+20-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:14:9-99
+21            android:name="com.leeson.image_pickers.activitys.PermissionActivity"
+21-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:14:19-63
+22            android:theme="@style/TransTheme" />
+22-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:14:64-97
+23        <activity
+23-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:15:9-99
+24            android:name="com.leeson.image_pickers.activitys.SelectPicsActivity"
+24-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:15:19-63
+25            android:theme="@style/TransTheme" />
+25-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:15:64-97
+26        <activity
+26-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:16:9-130
+27            android:name="com.leeson.image_pickers.activitys.PhotosActivity"
+27-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:16:19-59
+28            android:screenOrientation="portrait"
+28-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:16:60-96
+29            android:theme="@style/AppTheme" />
+29-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:16:97-128
+30        <activity
+30-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:17:9-139
+31            android:name="com.leeson.image_pickers.activitys.VideoActivity"
+31-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:17:19-58
+32            android:configChanges="orientation|screenSize"
+32-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:17:59-105
+33            android:theme="@style/AppTheme" />
+33-->C:\Users\Dominique Youness\AppData\Local\Pub\Cache\hosted\pub.dartlang.org\image_pickers-1.0.8+7\android\src\main\AndroidManifest.xml:17:106-137
+34
+35        <!-- <provider -->
+36        <!-- android:name=".provides.MyProvide" -->
+37        <!-- android:authorities="com.leeson.pickers.fileprovider" -->
+38        <!-- android:exported="false" -->
+39        <!-- android:grantUriPermissions="true"> -->
+40        <!-- <meta-data -->
+41        <!-- android:name="android.support.FILE_PROVIDER_PATHS" -->
+42        <!-- android:resource="@xml/pickers_plugin_file_path" /> -->
+43        <!-- </provider> -->
+44    </application>
+45
+46</manifest>

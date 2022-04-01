@@ -69,10 +69,10 @@ var uuid = Uuid();
  String url(String phone, String message) {
     if (Platform.isAndroid) {
       // add the [https]
-      return "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
+      return "https://wa.me/+243893890266/?text=${Uri.parse(message)}"; // new line
     } else {
       // add the [https]
-      return "https://api.whatsapp.com/send?phone=$phone=${Uri.parse(message)}"; // new line
+      return "https://api.whatsapp.com/send?phone=+243893890266=${Uri.parse(message)}"; // new line
     }
   }
 
@@ -149,7 +149,7 @@ Widget contact(car, context){
            child: GestureDetector(
              onTap: () async{
 
-               response = 'tel:${car.phone}';
+               response = 'tel:+243893890266';
 
                if (await canLaunch(response)) {
                  await launch(response);
@@ -191,7 +191,7 @@ Widget contact(car, context){
              onTap: () async{
 
                response = url(
-                 car.phone, 
+                 '+243893890266', 
                  'Bonjour, je suis intéressé par votre véhicule ${car.marque}, ${car.modele} 《code ${car.code}》que vous vendez dans l\'application TOKSMO -AUTO');
 
                if (await canLaunch(response)) {

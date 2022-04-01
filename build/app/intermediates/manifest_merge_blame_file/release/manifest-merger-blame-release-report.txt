@@ -1,0 +1,459 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="cd.belhanda.car_rental_rdc"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+11-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:7:5-80
+11-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:7:22-77
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:8:5-81
+12-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:8:22-78
+13    <uses-permission android:name="android.permission.CAMERA" />
+13-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:7:5-65
+13-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:7:22-62
+14    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+14-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:8:5-71
+14-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:8:22-68
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:11:5-67
+15-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:11:22-64
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[:connectivity] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:7:5-79
+16-->[:connectivity] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:7:22-76
+17    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+17-->[:connectivity] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:8:5-76
+17-->[:connectivity] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\connectivity\intermediates\library_manifest\release\AndroidManifest.xml:8:22-73
+18    <!--
+19 io.flutter.app.FlutterApplication is an android.app.Application that
+20         calls FlutterMain.startInitialization(this); in its onCreate method.
+21         In most cases you can leave this as-is, but you if you want to provide
+22         additional functionality it is fine to subclass or reimplement
+23         FlutterApplication and put your custom class here.
+24    -->
+25    <application
+25-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:8:5-46:19
+26        android:name="io.flutter.app.FlutterApplication"
+26-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:9:9-57
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.3.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\f9b659767cd0af891e1bb4e3fa93e79b\core-1.3.0\AndroidManifest.xml:24:18-86
+28        android:icon="@mipmap/ic_launcher"
+28-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:11:9-43
+29        android:label="Toksmo Auto"
+29-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:10:9-36
+30        android:networkSecurityConfig="@xml/net_sec"
+30-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:13:18-62
+31        android:requestLegacyExternalStorage="true" >
+31-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:13:18-61
+32        <activity
+32-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:12:9-40:20
+33            android:name="cd.belhanda.car_rental_rdc.MainActivity"
+33-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:13:13-41
+34            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+34-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:16:13-163
+35            android:hardwareAccelerated="true"
+35-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:17:13-47
+36            android:launchMode="singleTop"
+36-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:14:13-43
+37            android:theme="@style/LaunchTheme"
+37-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:15:13-47
+38            android:windowSoftInputMode="adjustResize" >
+38-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:18:13-55
+39
+40            <!--
+41                 Specifies an Android theme to apply to this Activity as soon as
+42                 the Android process has started. This theme is visible to the user
+43                 while the Flutter UI initializes. After that, this theme continues
+44                 to determine the Window background behind the Flutter UI.
+45            -->
+46            <meta-data
+46-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:23:13-26:17
+47                android:name="io.flutter.embedding.android.NormalTheme"
+47-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:24:15-70
+48                android:resource="@style/NormalTheme" />
+48-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:25:15-52
+49            <!--
+50                 Displays an Android View that continues showing the launch screen
+51                 Drawable until Flutter paints its first frame, then this splash
+52                 screen fades out. A splash screen is useful to avoid any visual
+53                 gap between the end of Android's launch screen and the painting of
+54                 Flutter's first frame.
+55            -->
+56            <meta-data
+56-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:32:13-35:17
+57                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+57-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:33:15-79
+58                android:resource="@drawable/launch_background" />
+58-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:34:15-61
+59
+60            <intent-filter>
+60-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:36:13-39:29
+61                <action android:name="android.intent.action.MAIN" />
+61-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:37:17-68
+61-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:37:25-66
+62
+63                <category android:name="android.intent.category.LAUNCHER" />
+63-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:38:17-76
+63-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:38:27-74
+64            </intent-filter>
+65        </activity>
+66        <!--
+67             Don't delete the meta-data below.
+68             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+69        -->
+70        <meta-data
+70-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:43:9-45:33
+71            android:name="flutterEmbedding"
+71-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:44:13-44
+72            android:value="2" />
+72-->C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\android\app\src\main\AndroidManifest.xml:45:13-30
+73
+74        <service
+74-->[:firebase_database] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:8:9-12:19
+75            android:name="com.google.firebase.components.ComponentDiscoveryService"
+75-->[:firebase_database] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:8:18-89
+76            android:directBootAware="true"
+76-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
+77            android:exported="false" >
+77-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:76:13-37
+78            <meta-data
+78-->[:firebase_database] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+79                android:name="com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar"
+79-->[:firebase_database] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:10:17-127
+80                android:value="com.google.firebase.components.ComponentRegistrar" />
+80-->[:firebase_database] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_database\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+81            <meta-data
+81-->[:cloud_firestore] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\cloud_firestore\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+82                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+82-->[:cloud_firestore] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\cloud_firestore\intermediates\library_manifest\release\AndroidManifest.xml:10:17-134
+83                android:value="com.google.firebase.components.ComponentRegistrar" />
+83-->[:cloud_firestore] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\cloud_firestore\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+84            <meta-data
+84-->[:firebase_auth] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_auth\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+85                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+85-->[:firebase_auth] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_auth\intermediates\library_manifest\release\AndroidManifest.xml:10:17-124
+86                android:value="com.google.firebase.components.ComponentRegistrar" />
+86-->[:firebase_auth] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_auth\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+87            <meta-data
+87-->[:firebase_storage] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_storage\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+88                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+88-->[:firebase_storage] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_storage\intermediates\library_manifest\release\AndroidManifest.xml:10:17-126
+89                android:value="com.google.firebase.components.ComponentRegistrar" />
+89-->[:firebase_storage] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_storage\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+90            <meta-data
+90-->[:firebase_core] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_core\intermediates\library_manifest\release\AndroidManifest.xml:9:13-11:85
+91                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+91-->[:firebase_core] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_core\intermediates\library_manifest\release\AndroidManifest.xml:10:17-124
+92                android:value="com.google.firebase.components.ComponentRegistrar" />
+92-->[:firebase_core] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\firebase_core\intermediates\library_manifest\release\AndroidManifest.xml:11:17-82
+93            <meta-data
+93-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:77:13-79:85
+94                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+94-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:78:17-109
+95                android:value="com.google.firebase.components.ComponentRegistrar" />
+95-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:79:17-82
+96            <meta-data
+96-->[com.google.firebase:firebase-firestore:22.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\06dd7bfcfe4c4b946f9037b3f094395c\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:20:13-22:85
+97                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+97-->[com.google.firebase:firebase-firestore:22.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\06dd7bfcfe4c4b946f9037b3f094395c\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:21:17-111
+98                android:value="com.google.firebase.components.ComponentRegistrar" />
+98-->[com.google.firebase:firebase-firestore:22.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\06dd7bfcfe4c4b946f9037b3f094395c\jetified-firebase-firestore-22.0.1\AndroidManifest.xml:22:17-82
+99            <meta-data
+99-->[com.google.firebase:firebase-storage:19.2.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\099de0548c5e2e258cb23f4be67972e7\firebase-storage-19.2.1\AndroidManifest.xml:33:13-35:85
+100                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+100-->[com.google.firebase:firebase-storage:19.2.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\099de0548c5e2e258cb23f4be67972e7\firebase-storage-19.2.1\AndroidManifest.xml:34:17-107
+101                android:value="com.google.firebase.components.ComponentRegistrar" />
+101-->[com.google.firebase:firebase-storage:19.2.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\099de0548c5e2e258cb23f4be67972e7\firebase-storage-19.2.1\AndroidManifest.xml:35:17-82
+102            <meta-data
+102-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\67865788bd722895f0d2aaae57ce2098\firebase-database-19.6.0\AndroidManifest.xml:32:13-34:85
+103                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+103-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\67865788bd722895f0d2aaae57ce2098\firebase-database-19.6.0\AndroidManifest.xml:33:17-109
+104                android:value="com.google.firebase.components.ComponentRegistrar" />
+104-->[com.google.firebase:firebase-database:19.6.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\67865788bd722895f0d2aaae57ce2098\firebase-database-19.6.0\AndroidManifest.xml:34:17-82
+105            <!--
+106                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+107                clients to use it as well, by defining this registrar in their own core/common library.
+108            -->
+109            <meta-data
+109-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
+110                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+110-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
+111                android:value="com.google.firebase.components.ComponentRegistrar" />
+111-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
+112        </service>
+113
+114        <provider
+114-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:11:9-19:20
+115            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+115-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:12:13-82
+116            android:authorities="cd.belhanda.car_rental_rdc.flutter.image_provider"
+116-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:13:13-74
+117            android:exported="false"
+117-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:14:13-37
+118            android:grantUriPermissions="true" >
+118-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:15:13-47
+119            <meta-data
+119-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:16:13-18:75
+120                android:name="android.support.FILE_PROVIDER_PATHS"
+120-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:17:17-67
+121                android:resource="@xml/flutter_image_picker_file_paths" />
+121-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:18:17-72
+122        </provider> <!-- 适配9.0的系统 -->
+123        <uses-library
+123-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:16:9-18:40
+124            android:name="org.apache.http.legacy"
+124-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:17:13-50
+125            android:required="false" /> <!-- 适配9.0的系统 -->
+125-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:18:13-37
+126        <activity
+126-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:20:9-22:49
+127            android:name="com.leeson.image_pickers.activitys.PermissionActivity"
+127-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:21:13-81
+128            android:theme="@style/TransTheme" />
+128-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:22:13-46
+129        <activity
+129-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:23:9-25:49
+130            android:name="com.leeson.image_pickers.activitys.SelectPicsActivity"
+130-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:24:13-81
+131            android:theme="@style/TransTheme" />
+131-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:25:13-46
+132        <activity
+132-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:26:9-29:47
+133            android:name="com.leeson.image_pickers.activitys.PhotosActivity"
+133-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:27:13-77
+134            android:screenOrientation="portrait"
+134-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:28:13-49
+135            android:theme="@style/AppTheme" />
+135-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:29:13-44
+136        <activity
+136-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:30:9-33:47
+137            android:name="com.leeson.image_pickers.activitys.VideoActivity"
+137-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:31:13-76
+138            android:configChanges="orientation|screenSize"
+138-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:32:13-59
+139            android:theme="@style/AppTheme" />
+139-->[:image_pickers] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_pickers\intermediates\library_manifest\release\AndroidManifest.xml:33:13-44
+140        <activity
+140-->[:url_launcher] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:8:9-11:74
+141            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+141-->[:url_launcher] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:9:13-74
+142            android:exported="false"
+142-->[:url_launcher] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:10:13-37
+143            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+143-->[:url_launcher] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\url_launcher\intermediates\library_manifest\release\AndroidManifest.xml:11:13-71
+144        <activity
+144-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:27:9-44:20
+145            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+145-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:28:13-80
+146            android:excludeFromRecents="true"
+146-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:29:13-46
+147            android:exported="true"
+147-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:30:13-36
+148            android:launchMode="singleTask"
+148-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:31:13-44
+149            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+149-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:32:13-72
+150            <intent-filter>
+150-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:33:13-43:29
+151                <action android:name="android.intent.action.VIEW" />
+151-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:34:17-69
+151-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:34:25-66
+152
+153                <category android:name="android.intent.category.DEFAULT" />
+153-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:36:17-76
+153-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:36:27-73
+154                <category android:name="android.intent.category.BROWSABLE" />
+154-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:37:17-78
+154-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:37:27-75
+155
+156                <data
+156-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:39:17-42:51
+157                    android:host="firebase.auth"
+157-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:40:21-49
+158                    android:path="/"
+158-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:41:21-37
+159                    android:scheme="genericidp" />
+159-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:42:21-48
+160            </intent-filter>
+161        </activity>
+162        <activity
+162-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:45:9-62:20
+163            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+163-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:46:13-79
+164            android:excludeFromRecents="true"
+164-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:47:13-46
+165            android:exported="true"
+165-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:48:13-36
+166            android:launchMode="singleTask"
+166-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:49:13-44
+167            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+167-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:50:13-72
+168            <intent-filter>
+168-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:51:13-61:29
+169                <action android:name="android.intent.action.VIEW" />
+169-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:34:17-69
+169-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:34:25-66
+170
+171                <category android:name="android.intent.category.DEFAULT" />
+171-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:36:17-76
+171-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:36:27-73
+172                <category android:name="android.intent.category.BROWSABLE" />
+172-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:37:17-78
+172-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:37:27-75
+173
+174                <data
+174-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:39:17-42:51
+175                    android:host="firebase.auth"
+175-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:40:21-49
+176                    android:path="/"
+176-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:41:21-37
+177                    android:scheme="recaptcha" />
+177-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:42:21-48
+178            </intent-filter>
+179        </activity>
+180
+181        <service
+181-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:64:9-73:19
+182            android:name="com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService"
+182-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:65:13-101
+183            android:enabled="true"
+183-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:66:13-35
+184            android:exported="false" >
+184-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:67:13-37
+185            <intent-filter>
+185-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:68:13-72:29
+186                <action android:name="com.google.firebase.auth.api.gms.service.START" />
+186-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:69:17-89
+186-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:69:25-86
+187
+188                <category android:name="android.intent.category.DEFAULT" />
+188-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:36:17-76
+188-->[com.google.firebase:firebase-auth:20.0.1] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\10c64c1d5ec21b06094752f954cfb429\jetified-firebase-auth-20.0.1\AndroidManifest.xml:36:27-73
+189            </intent-filter>
+190        </service>
+191
+192        <provider
+192-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
+193            android:name="com.google.firebase.provider.FirebaseInitProvider"
+193-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
+194            android:authorities="cd.belhanda.car_rental_rdc.firebaseinitprovider"
+194-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
+195            android:directBootAware="true"
+195-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
+196            android:exported="false"
+196-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
+197            android:initOrder="100" />
+197-->[com.google.firebase:firebase-common:19.5.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\3d6b5ef185c219d5e3f6fc6577d378d0\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
+198        <provider
+198-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:14:9-22:20
+199            android:name="com.luck.picture.lib.PictureFileProvider"
+199-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:15:13-68
+200            android:authorities="cd.belhanda.car_rental_rdc.provider"
+200-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:16:13-60
+201            android:exported="false"
+201-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:17:13-37
+202            android:grantUriPermissions="true" >
+202-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:18:13-47
+203            <meta-data
+203-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:16:13-18:75
+204                android:name="android.support.FILE_PROVIDER_PATHS"
+204-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:17:17-67
+205                android:resource="@xml/file_paths" />
+205-->[:image_picker] C:\Users\Dominique Youness\StudioProjects\car_rental_rdc\build\image_picker\intermediates\library_manifest\release\AndroidManifest.xml:18:17-72
+206        </provider>
+207
+208        <activity
+208-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:24:9-26:77
+209            android:name="com.luck.picture.lib.PictureSelectorActivity"
+209-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:25:13-72
+210            android:configChanges="orientation|keyboardHidden|screenSize" />
+210-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:26:13-74
+211        <activity
+211-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:27:9-29:77
+212            android:name="com.luck.picture.lib.PictureSelectorWeChatStyleActivity"
+212-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:28:13-83
+213            android:configChanges="orientation|keyboardHidden|screenSize" />
+213-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:29:13-74
+214        <activity
+214-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:30:9-33:64
+215            android:name="com.luck.picture.lib.PictureSelectorCameraEmptyActivity"
+215-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:31:13-83
+216            android:configChanges="orientation|keyboardHidden|screenSize"
+216-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:32:13-74
+217            android:theme="@style/Picture.Theme.Translucent" />
+217-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:33:13-61
+218        <activity
+218-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:34:9-36:77
+219            android:name="com.luck.picture.lib.PictureCustomCameraActivity"
+219-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:35:13-76
+220            android:configChanges="orientation|keyboardHidden|screenSize" />
+220-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:36:13-74
+221        <activity
+221-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:37:9-39:77
+222            android:name="com.luck.picture.lib.PicturePreviewActivity"
+222-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:38:13-71
+223            android:configChanges="orientation|keyboardHidden|screenSize" />
+223-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:39:13-74
+224        <activity
+224-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:40:9-42:77
+225            android:name="com.luck.picture.lib.PictureSelectorPreviewWeChatStyleActivity"
+225-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:41:13-90
+226            android:configChanges="orientation|keyboardHidden|screenSize" />
+226-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:42:13-74
+227        <activity
+227-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:43:9-46:50
+228            android:name="com.luck.picture.lib.PictureVideoPlayActivity"
+228-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:44:13-73
+229            android:configChanges="orientation|keyboardHidden|screenSize"
+229-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:45:13-74
+230            android:screenOrientation="sensor" />
+230-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:46:13-47
+231        <activity
+231-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:47:9-49:77
+232            android:name="com.luck.picture.lib.PictureExternalPreviewActivity"
+232-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:48:13-79
+233            android:configChanges="orientation|keyboardHidden|screenSize" />
+233-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:49:13-74
+234        <activity
+234-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:50:9-52:77
+235            android:name="com.luck.picture.lib.PicturePlayAudioActivity"
+235-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:51:13-73
+236            android:configChanges="orientation|keyboardHidden|screenSize" />
+236-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:52:13-74
+237        <activity
+237-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:53:9-55:61
+238            android:name="com.yalantis.ucrop.UCropActivity"
+238-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:54:13-60
+239            android:theme="@style/Base.Theme.NoActionBar" />
+239-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:55:13-58
+240        <activity
+240-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:56:9-58:61
+241            android:name="com.yalantis.ucrop.PictureMultiCuttingActivity"
+241-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:57:13-74
+242            android:theme="@style/Base.Theme.NoActionBar" />
+242-->[com.github.LuckSiege.PictureSelector:picture_library:v2.5.9] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\4cea34bb91ff53b7c2d575ad56f260e4\picture_library-v2.5.9\AndroidManifest.xml:58:13-58
+243        <activity
+243-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\35c6271043b1425f98f4c3536d04e924\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+244            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+244-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\35c6271043b1425f98f4c3536d04e924\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+245            android:exported="false"
+245-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\35c6271043b1425f98f4c3536d04e924\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+246            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+246-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\35c6271043b1425f98f4c3536d04e924\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+247
+248        <meta-data
+248-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\c641d53ee45107ca69609602f945e9be\jetified-play-services-basement-17.1.0\AndroidManifest.xml:23:9-25:69
+249            android:name="com.google.android.gms.version"
+249-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\c641d53ee45107ca69609602f945e9be\jetified-play-services-basement-17.1.0\AndroidManifest.xml:24:13-58
+250            android:value="@integer/google_play_services_version" />
+250-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\Dominique Youness\.gradle\caches\transforms-2\files-2.1\c641d53ee45107ca69609602f945e9be\jetified-play-services-basement-17.1.0\AndroidManifest.xml:25:13-66
+251    </application>
+252
+253</manifest>
