@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/car_rental_rdc.iml" filepath="$PROJECT_DIR$/.idea/car_rental_rdc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/car_rental_rdc_2.iml" filepath="$PROJECT_DIR$/car_rental_rdc_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/car_rental_rdc_2_android.iml" filepath="$PROJECT_DIR$/android/car_rental_rdc_2_android.iml" />
     </modules>
   </component>
 </project>
