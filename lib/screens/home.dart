@@ -68,14 +68,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Consumer<Brands>(
                 builder: (context, item, _) => SizedBox(
-                  height: size.height * 0.19,
+                  height: size.height * 0.21,
                   child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: item.brands.length,
                     itemBuilder: (ctx, i) {
                       return Container(
-                        height: size.height * 0.07,
+                        height: size.height * 0.2,
                         width: size.width * 0.35,
                         alignment: Alignment.centerLeft,
                         margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Consumer<Cars>(
                 builder: (context, item, _) => SizedBox(
-                  height: size.height * 0.3,
+                  height: size.height * 0.35,
                   child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
