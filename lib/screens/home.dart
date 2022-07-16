@@ -27,8 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final Stream<QuerySnapshot> _usersStream =
-          FirebaseFirestore.instance.collection('Marques').snapshots();
+    var _dataStream =
+          FirebaseFirestore.instance.collection('donnees');
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -52,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 13),
               child: Row(
@@ -69,58 +70,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-          SizedBox(
-            height: size.height * 0.21,
-            child: StreamBuilder<QuerySnapshot>(
-              stream: _usersStream,
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  return Text('Something went wrong');
-                }
+            item(context, size, _dataStream, 'vehicule'),
 
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Text("Loading");
-                }
-
-                var datas = snapshot.data!.docs;
-
-                print('La Paille ${datas.toString()}');
-
-                return ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: datas.length,
-                        itemBuilder: (ctx, i) {
-                          Map<String, dynamic> data = datas[i].data()! as Map<String, dynamic>;
-                          return Container(
-                                    height: size.height * 0.2,
-                                    width: size.width * 0.35,
-                                    alignment: Alignment.centerLeft,
-                                    margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                    padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
-                                    decoration: BoxDecoration(
-                                      color: kShadeColor.withOpacity(0.3),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Image.asset(
-                                          data['image'],
-                                          scale: 0.9,
-                                        ),
-                                        const SizedBox(height: 9),
-                                        Text(
-                                          data['marque'],
-                                          style: kBrand,
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                        }
-                        );
-              },
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 0, 15, 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Camion',
+                    style: kSectionTitle,
+                  ),
+                  Text(
+                    'voir tout',
+                    style: kViewAll,
+                  ),
+                ],
+              ),
             ),
-          ),
+
+            item(context, size, _dataStream, 'camion'),
+
 
             // Padding(
             //   padding: const EdgeInsets.fromLTRB(15, 24, 15, 13),
@@ -302,6 +272,119 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget item(BuildContext context, size, _dataStream, type){
+    return SizedBox(
+      height: size.height * 0.21,
+      child: StreamBuilder<QuerySnapshot>(
+        stream: _dataStream.doc('$type').collection('item')
+            .orderBy("timestamp", descending: true)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                'Something went wrong',
+                style: TextStyle(
+                    color: Colors.white
+                ),
+              ),
+            );
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                "Loading",
+                style: TextStyle(
+                    color: Colors.white
+                ),
+              ),
+            );
+          }
+          var datas = snapshot.data!.docs;
+          return ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (ctx, i) {
+                Map<String, dynamic> data = datas[i].data()! as Map<String, dynamic>;
+                return Stack(
+                  children: [
+                    Container(
+                      height: size.height * 0.2,
+                      width: size.width * 0.35,
+                      alignment: Alignment.centerLeft,
+                      margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                      padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              '${data['image'][0]}'
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 17.0, bottom: 8.0),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Container(
+                          width: size.width * 0.34,
+                          padding: EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            color: kBackgroundColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Flexible(
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              strutStyle: StrutStyle(fontSize: 12.0),
+                              text: TextSpan(
+                                style: TextStyle(color: Colors.white),
+                                text: '${data['marque']} ${data['name']}',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0, top: 1.0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          padding: EdgeInsets.all(4.0),
+                          decoration: BoxDecoration(
+                            color: kBackgroundColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Flexible(
+                            child: RichText(
+                              overflow: TextOverflow.ellipsis,
+                              strutStyle: StrutStyle(fontSize: 12.0),
+                              text: TextSpan(
+                                style: TextStyle(color: Colors.white),
+                                text: '${data['prix']}',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+              }
+          );
+        },
       ),
     );
   }
