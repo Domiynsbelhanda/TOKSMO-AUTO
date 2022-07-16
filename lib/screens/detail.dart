@@ -4,23 +4,11 @@ import 'package:flutter/material.dart';
 class DetailScreen extends StatefulWidget {
   final String name;
   final String brand;
-  final String imageUrl;
-  final String description;
-  final String speed;
-  final String seats;
-  final String engine;
-  final String price;
 
   const DetailScreen({
     Key? key,
     required this.name,
-    required this.brand,
-    required this.imageUrl,
-    required this.description,
-    required this.speed,
-    required this.seats,
-    required this.engine,
-    required this.price,
+    required this.brand
   }) : super(key: key);
 
   @override
@@ -88,8 +76,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
                 Center(
                   child: Hero(
-                    tag: widget.imageUrl,
-                    child: Image.asset(widget.imageUrl),
+                    tag: 'widget.imageUrl',
+                    child: Image.asset('widget.imageUrl'),
                   ),
                 ),
                 Padding(
@@ -100,7 +88,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       const Text('Description', style: kSectionTitle),
                       const SizedBox(height: 10),
                       Text(
-                        widget.description,
+                        'widget.description',
                         style: kBrand.copyWith(
                           fontWeight: FontWeight.w400,
                         ),
@@ -124,7 +112,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             children: [
                               Image.asset('assets/images/speed.png'),
                               const SizedBox(height: 3),
-                              Text(widget.speed, style: kBrand),
+                              Text('widget.speed', style: kBrand),
                               const SizedBox(height: 3),
                               Text(
                                 'Max. Speed',
@@ -140,7 +128,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             children: [
                               Image.asset('assets/images/seat.png'),
                               const SizedBox(height: 3),
-                              Text(widget.seats, style: kBrand),
+                              Text('widget.seats', style: kBrand),
                               const SizedBox(height: 3),
                               Text(
                                 'Seats',
@@ -156,7 +144,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             children: [
                               Image.asset('assets/images/engine.png'),
                               const SizedBox(height: 3),
-                              Text(widget.engine, style: kBrand),
+                              Text('widget.engine', style: kBrand),
                               const SizedBox(height: 3),
                               Text(
                                 'Engine',
@@ -197,7 +185,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(widget.price, style: kPrice),
+                                Text('widget.price', style: kPrice),
                                 const SizedBox(height: 2),
                                 Text(
                                   '/week',

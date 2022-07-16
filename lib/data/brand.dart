@@ -1,28 +1,37 @@
 import 'package:flutter/foundation.dart';
 
 class Brand with ChangeNotifier {
-  final String name;
-  final String imageUrl;
+  final String marque;
+  final String image;
+  final String type;
 
   Brand({
-    required this.name,
-    required this.imageUrl,
+    required this.marque,
+    required this.image,
+    required this.type
   });
+
+  Map<String,dynamic> createMap(){
+    return {
+      'marque': marque,
+      'image': image,
+      'type': type
+    };
+  }
+
+  Brand.fromFirestore(Map<String,dynamic> firestoreMap):
+        marque = firestoreMap['marque'],
+        image = firestoreMap['image'],
+        type = firestoreMap['type'];
 }
 
-class Brands with ChangeNotifier {
-  List<Brand> brands = [
-    Brand(
-      name: 'Porsche',
-      imageUrl: 'assets/images/porshce.png',
-    ),
-    Brand(
-      name: 'Mercedes',
-      imageUrl: 'assets/images/mercedes.png',
-    ),
-    Brand(
-      name: 'Lamborghini',
-      imageUrl: 'assets/images/lamborghini.png',
-    ),
-  ];
+class BrandsProvider with ChangeNotifier {
+  late String _marque;
+  late String _image;
+  late String _type;
+
+//getters:
+  String get getMarque => _marque;
+  String get getImage => _image;
+  String get getType => _type;
 }
