@@ -274,21 +274,46 @@ class _DetailScreenState extends State<DetailScreen> {
                     horizontal: 16,
                     vertical: 20,
                   ),
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Rent This Car'),
-                    style: TextButton.styleFrom(
-                      primary: kTextColor,
-                      backgroundColor: kPrimaryColor,
-                      textStyle: kPrice,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
+                  decoration: BoxDecoration(
+                    color: kBackgroundColor
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Rent This Car'),
+                        style: TextButton.styleFrom(
+                          primary: kTextColor,
+                          backgroundColor: kPrimaryColor,
+                          textStyle: kPrice,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text('Rent This Car'),
+                        style: TextButton.styleFrom(
+                          primary: kTextColor,
+                          backgroundColor: kPrimaryColor,
+                          textStyle: kPrice,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
