@@ -198,73 +198,87 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: datas.length,
                 itemBuilder: (ctx, i) {
                   Map<String, dynamic> data = datas[i].data()! as Map<String, dynamic>;
-                  return Stack(
-                    children: [
-                      Container(
-                        height: size.height * 0.2,
-                        width: size.width * 0.35,
-                        alignment: Alignment.centerLeft,
-                        margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                        padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                '${data['image'][0]}'
-                            ),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
+                  return GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DetailScreen(
+                                    keys: '${data['key']}',
+                                  type: type,
+                                )
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 17.0, bottom: 8.0),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Container(
-                            width: size.width * 0.34,
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                              color: kBackgroundColor,
-                              borderRadius: BorderRadius.circular(10),
+                      );
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: size.height * 0.2,
+                          width: size.width * 0.35,
+                          alignment: Alignment.centerLeft,
+                          margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                          padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                  '${data['image'][0]}'
+                              ),
+                              fit: BoxFit.cover,
                             ),
-                            child: Flexible(
-                              child: RichText(
-                                overflow: TextOverflow.ellipsis,
-                                strutStyle: StrutStyle(fontSize: 12.0),
-                                text: TextSpan(
-                                  style: TextStyle(color: Colors.white),
-                                  text: '${data['marque']} ${data['name']}',
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 17.0, bottom: 8.0),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Container(
+                              width: size.width * 0.34,
+                              padding: EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                color: kBackgroundColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Flexible(
+                                child: RichText(
+                                  overflow: TextOverflow.ellipsis,
+                                  strutStyle: StrutStyle(fontSize: 12.0),
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.white),
+                                    text: '${data['marque']} ${data['name']}',
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
 
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0, top: 1.0),
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            padding: EdgeInsets.all(4.0),
-                            decoration: BoxDecoration(
-                              color: kBackgroundColor,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Flexible(
-                              child: RichText(
-                                overflow: TextOverflow.ellipsis,
-                                strutStyle: StrutStyle(fontSize: 12.0),
-                                text: TextSpan(
-                                  style: TextStyle(color: Colors.white),
-                                  text: '${data['prix']}',
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16.0, top: 1.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              padding: EdgeInsets.all(4.0),
+                              decoration: BoxDecoration(
+                                color: kBackgroundColor,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Flexible(
+                                child: RichText(
+                                  overflow: TextOverflow.ellipsis,
+                                  strutStyle: StrutStyle(fontSize: 12.0),
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.white),
+                                    text: '${data['prix']}',
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   );
                 }
             ),
@@ -326,53 +340,66 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: datas.length,
                 itemBuilder: (ctx, i) {
                   Map<String, dynamic> data = datas[i].data()! as Map<String, dynamic>;
-                  return Stack(
-                    children: [
-                      Container(
-                        width: size.width / 2,
-                        height: size.height * 0.1,
-                        margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: kShadeColor.withOpacity(0.3),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.network('${data['image'][0]}'),
-                            const SizedBox(width: 16),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                  child: RichText(
-                                    overflow: TextOverflow.ellipsis,
-                                    strutStyle: StrutStyle(fontSize: 12.0),
-                                    text: TextSpan(
-                                      style: TextStyle(color: Colors.white),
-                                      text: '${data['modele']}',
+                  return GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>
+                            DetailScreen(
+                                keys: '${data['key']}',
+                              type: type,
+                            ))
+                        ,
+                      );
+                    },
+                    child : Stack(
+                      children: [
+                        Container(
+                          width: size.width / 2,
+                          height: size.height * 0.1,
+                          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: kShadeColor.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.network('${data['image'][0]}'),
+                              const SizedBox(width: 16),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Flexible(
+                                    child: RichText(
+                                      overflow: TextOverflow.ellipsis,
+                                      strutStyle: StrutStyle(fontSize: 12.0),
+                                      text: TextSpan(
+                                        style: TextStyle(color: Colors.white),
+                                        text: '${data['modele']}',
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 3),
-                                Flexible(
-                                  child: RichText(
-                                    overflow: TextOverflow.ellipsis,
-                                    strutStyle: StrutStyle(fontSize: 10.0),
-                                    text: TextSpan(
-                                      style: TextStyle(color: Colors.white),
-                                      text: '${data['prix']}',
+                                  const SizedBox(height: 3),
+                                  Flexible(
+                                    child: RichText(
+                                      overflow: TextOverflow.ellipsis,
+                                      strutStyle: StrutStyle(fontSize: 10.0),
+                                      text: TextSpan(
+                                        style: TextStyle(color: Colors.white),
+                                        text: '${data['prix']}',
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    )
                   );
                 }
             ),

@@ -12,7 +12,17 @@
     <list default="true" id="bc730474-abcc-441b-a82e-f03c11b69e5f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/huracan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/kristy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/lamborghini.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/mercedes.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/panamera.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/images/porshce.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/detail.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
