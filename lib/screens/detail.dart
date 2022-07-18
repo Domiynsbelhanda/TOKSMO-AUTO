@@ -284,7 +284,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Rent This Car'),
+                        child: const Text('appel'),
                         style: TextButton.styleFrom(
                           primary: kTextColor,
                           backgroundColor: kPrimaryColor,
@@ -301,10 +301,10 @@ class _DetailScreenState extends State<DetailScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Rent This Car'),
+                        child: const Text('whatsapp'),
                         style: TextButton.styleFrom(
-                          primary: kTextColor,
-                          backgroundColor: kPrimaryColor,
+                          primary: Colors.green,
+                          backgroundColor: Colors.white,
                           textStyle: kPrice,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
