@@ -246,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       child: StreamBuilder<QuerySnapshot>(
         stream: _dataStream.doc('$type').collection('item')
-            .orderBy("timestamp", descending: true)
+            .orderBy("timestamp", descending: false)
             .limit(5)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -388,7 +388,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       child: StreamBuilder<QuerySnapshot>(
         stream: _dataStream.doc('$type').collection('item')
-            .orderBy("timestamp", descending: true)
+            .orderBy("timestamp", descending: false)
             .limit(5)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

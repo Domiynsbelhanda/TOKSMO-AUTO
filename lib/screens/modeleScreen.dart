@@ -1,27 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:toksmo_auto/screens/modeleScreen.dart';
+import 'package:toksmo_auto/screens/itemScreen.dart';
 
 import '../constant.dart';
 
-class MarqueScreen extends StatefulWidget{
+class ModeleScreen extends StatefulWidget{
   String type;
-  MarqueScreen({required this.type});
+  String marque;
+  ModeleScreen({required this.type, required this.marque});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _MarqueScreen();
+    return _ModeleScreen();
   }
 }
 
-class _MarqueScreen extends State<MarqueScreen>{
+class _ModeleScreen extends State<ModeleScreen>{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var _dataStream =
     FirebaseFirestore.instance.collection('donnees')
-        .doc('${widget.type}').collection('marque')
-        .orderBy('name', descending: false).snapshots();
+        .doc('${widget.type}').collection('modele')
+        .where('marque', isEqualTo: '${widget.marque}').snapshots();
     // TODO: implement build
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
@@ -31,7 +32,7 @@ class _MarqueScreen extends State<MarqueScreen>{
               return Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
-                  'Something went wrong',
+                  'Something went wrong ${snapshot.error}',
                   style: TextStyle(
                       color: Colors.white
                   ),
@@ -115,7 +116,7 @@ class _MarqueScreen extends State<MarqueScreen>{
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('Liste des marques de ${widget.type}'
+                            Text('Liste des modeles de ${widget.marque}'
                                 ,
                               style: TextStyle(
                                 color: Colors.white,
@@ -128,7 +129,7 @@ class _MarqueScreen extends State<MarqueScreen>{
 
                       const SizedBox(height: 24),
 
-                      Container(
+                      SizedBox(
                         width: size.width - 35,
                         height: size.height / 1.5,
                         child: GridView.count(
@@ -144,46 +145,33 @@ class _MarqueScreen extends State<MarqueScreen>{
                                 onTap: () {
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ModeleScreen(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ItemScreen(
                                                 type: widget.type,
-                                                marque: '${data['name']}'
-                                            )
-                                    ),
+                                                modele: '${data['name']}',
+                                                marque: widget.marque,
+                                              )
+                                      )
                                   );
                                 },
                                 child: Container(
+                                  margin: EdgeInsets.all(16.0),
+                                  padding: EdgeInsets.all(16.0),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(15),
                                     ),
                                   ),
-                                  padding: EdgeInsets.all(MediaQuery.of(context).size.width / 22),
-                                  margin: EdgeInsets.only(right: MediaQuery.of(context).size.width / 25,
-                                      left: MediaQuery.of(context).size.width / 25),
-                                  height: MediaQuery.of(context).size.width / 2,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        height: MediaQuery.of(context).size.width / 3,
-                                        child: Center(
-                                          child: Hero(
-                                            tag: '${data['key']}',
-                                            child: Image.network(
-                                              '${data['image']}',
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                          ),
-                                        ),
+                                  child: Center(
+                                    child: Text(
+                                        '${data['name']}',
+                                      style: TextStyle(
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.bold
                                       ),
-
-                                      Text('${data['name']}')
-
-                                    ],
+                                    ),
                                   ),
                                 )
                             );

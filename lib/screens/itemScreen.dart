@@ -3,25 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:toksmo_auto/screens/modeleScreen.dart';
 
 import '../constant.dart';
+import 'detail.dart';
 
-class MarqueScreen extends StatefulWidget{
+class ItemScreen extends StatefulWidget{
   String type;
-  MarqueScreen({required this.type});
+  String marque;
+  String modele;
+  ItemScreen({required this.type, required this.marque, required this.modele});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _MarqueScreen();
+    return _ItemScreen();
   }
 }
 
-class _MarqueScreen extends State<MarqueScreen>{
+class _ItemScreen extends State<ItemScreen>{
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var _dataStream =
     FirebaseFirestore.instance.collection('donnees')
-        .doc('${widget.type}').collection('marque')
-        .orderBy('name', descending: false).snapshots();
+        .doc('${widget.type}').collection('item')
+        .where('marque', isEqualTo: '${widget.marque}')
+        .where('modele', isEqualTo: '${widget.modele}').snapshots();
     // TODO: implement build
     return Scaffold(
       body: StreamBuilder<QuerySnapshot>(
@@ -115,7 +119,7 @@ class _MarqueScreen extends State<MarqueScreen>{
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('Liste des marques de ${widget.type}'
+                            Text('Liste des items de ${widget.modele}'
                                 ,
                               style: TextStyle(
                                 color: Colors.white,
@@ -146,46 +150,79 @@ class _MarqueScreen extends State<MarqueScreen>{
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            ModeleScreen(
-                                                type: widget.type,
-                                                marque: '${data['name']}'
+                                            DetailScreen(
+                                              keys: '${data['key']}',
+                                              type: widget.type,
                                             )
                                     ),
                                   );
                                 },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                      padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              '${data['image'][0]}'
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
-                                  ),
-                                  padding: EdgeInsets.all(MediaQuery.of(context).size.width / 22),
-                                  margin: EdgeInsets.only(right: MediaQuery.of(context).size.width / 25,
-                                      left: MediaQuery.of(context).size.width / 25),
-                                  height: MediaQuery.of(context).size.width / 2,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        height: MediaQuery.of(context).size.width / 3,
-                                        child: Center(
-                                          child: Hero(
-                                            tag: '${data['key']}',
-                                            child: Image.network(
-                                              '${data['image']}',
-                                              fit: BoxFit.fitWidth,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 17.0, bottom: 8.0),
+                                      child: Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Container(
+                                          width: size.width * 0.34,
+                                          padding: EdgeInsets.all(4.0),
+                                          decoration: BoxDecoration(
+                                            color: kBackgroundColor,
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: Flexible(
+                                            child: RichText(
+                                              overflow: TextOverflow.ellipsis,
+                                              strutStyle: StrutStyle(fontSize: 12.0),
+                                              text: TextSpan(
+                                                style: TextStyle(color: Colors.white),
+                                                text: '${data['marque']} ${data['name']}',
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
+                                    ),
 
-                                      Text('${data['name']}')
-
-                                    ],
-                                  ),
-                                )
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 16.0, top: 1.0),
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: Container(
+                                          padding: EdgeInsets.all(4.0),
+                                          decoration: BoxDecoration(
+                                            color: kBackgroundColor,
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: Flexible(
+                                            child: RichText(
+                                              overflow: TextOverflow.ellipsis,
+                                              strutStyle: StrutStyle(fontSize: 12.0),
+                                              text: TextSpan(
+                                                style: TextStyle(color: Colors.white),
+                                                text: '${data['prix']}',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                             );
                           }).toList(),
                         ),

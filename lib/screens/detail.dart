@@ -109,33 +109,6 @@ class _DetailScreenState extends State<DetailScreen> {
         return SafeArea(
           child: Stack(
             children: [
-              Positioned(
-                top: 16.0,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 20, 16, 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Container(
-                          height: size.width * 0.1,
-                          width: size.width * 0.1,
-                          decoration: BoxDecoration(
-                            color: kShadeColor.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Center(
-                            child: Image.asset('assets/images/back-arrow.png'),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
               ListView(
                 physics: const BouncingScrollPhysics(),
                 children: [
@@ -152,7 +125,11 @@ class _DetailScreenState extends State<DetailScreen> {
                             height: size.width * 0.1,
                             width: size.width * 0.1,
                             decoration: BoxDecoration(
+                              color: kShadeColor.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: Image.asset('assets/images/back-arrow.png'),
                             ),
                           ),
                         )
