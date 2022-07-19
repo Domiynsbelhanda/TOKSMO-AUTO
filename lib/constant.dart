@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 const Color kTextColor = Color(0xffFFFFFF);
@@ -61,3 +63,13 @@ const TextStyle kCarDetails = TextStyle(
   fontWeight: FontWeight.w500,
   color: kTextColor,
 );
+
+String url(String phone, String message) {
+  if (Platform.isAndroid) {
+    // add the [https]
+    return "https://wa.me/+243893890266/?text=${Uri.parse(message)}"; // new line
+  } else {
+    // add the [https]
+    return "https://api.whatsapp.com/send?phone=+243893890266=${Uri.parse(message)}"; // new line
+  }
+}

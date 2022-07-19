@@ -1,13 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:toksmo_auto/data/firestore_service.dart';
-
+import 'package:toksmo_auto/screens/marqueScreen.dart';
 import '../screens/detail.dart';
-import '../screens/rented.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../data/car.dart';
-import '../data/brand.dart';
 import '../constant.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,14 +51,27 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 13),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Vehicule',
                     style: kSectionTitle,
                   ),
-                  Text(
-                    'voir tout',
-                    style: kViewAll,
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MarqueScreen(
+                                    type: 'vehicule',
+                                )
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'voir tout',
+                      style: kViewAll,
+                    ),
                   ),
                 ],
               ),
@@ -76,14 +83,27 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(15, 16, 15, 13),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Camion',
                     style: kSectionTitle,
                   ),
-                  Text(
-                    'voir tout',
-                    style: kViewAll,
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MarqueScreen(
+                                  type: 'camion',
+                                )
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'voir tout',
+                      style: kViewAll,
+                    ),
                   ),
                 ],
               ),
@@ -95,14 +115,27 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(15, 16, 15, 13),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Engin',
                     style: kSectionTitle,
                   ),
-                  Text(
-                    'voir tout',
-                    style: kViewAll,
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MarqueScreen(
+                                  type: 'engin',
+                                )
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'voir tout',
+                      style: kViewAll,
+                    ),
                   ),
                 ],
               ),
@@ -114,14 +147,27 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.fromLTRB(15, 16, 15, 13),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
+                children: [
                   Text(
                     'Location',
                     style: kSectionTitle,
                   ),
-                  Text(
-                    'voir tout',
-                    style: kViewAll,
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MarqueScreen(
+                                  type: 'location',
+                                )
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'voir tout',
+                      style: kViewAll,
+                    ),
                   ),
                 ],
               ),
@@ -129,15 +175,65 @@ class _HomeScreenState extends State<HomeScreen> {
 
             item(context, size, _dataStream, 'location'),
 
-            const Padding(
-              padding: EdgeInsets.fromLTRB(15, 24, 15, 13),
-              child: Text('Pieces', style: kSectionTitle),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 16, 15, 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Piece',
+                    style: kSectionTitle,
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MarqueScreen(
+                                  type: 'piece',
+                                )
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'voir tout',
+                      style: kViewAll,
+                    ),
+                  ),
+                ],
+              ),
             ),
             itemPiece(context, size, _dataStream, 'piece'),
 
-            const Padding(
-              padding: EdgeInsets.fromLTRB(15, 24, 15, 13),
-              child: Text('Accessoires', style: kSectionTitle),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(15, 16, 15, 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Accessoire',
+                    style: kSectionTitle,
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MarqueScreen(
+                                  type: 'accessoire',
+                                )
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'voir tout',
+                      style: kViewAll,
+                    ),
+                  ),
+                ],
+              ),
             ),
             itemPiece(context, size, _dataStream, 'accessoire')
           ],
@@ -372,25 +468,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Flexible(
-                                    child: RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      strutStyle: StrutStyle(fontSize: 12.0),
-                                      text: TextSpan(
-                                        style: TextStyle(color: Colors.white),
-                                        text: '${data['modele']}',
-                                      ),
+                                  RichText(
+                                    overflow: TextOverflow.ellipsis,
+                                    strutStyle: StrutStyle(fontSize: 12.0),
+                                    text: TextSpan(
+                                      style: TextStyle(color: Colors.white),
+                                      text: '${data['modele']}',
                                     ),
                                   ),
                                   const SizedBox(height: 3),
-                                  Flexible(
-                                    child: RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      strutStyle: StrutStyle(fontSize: 10.0),
-                                      text: TextSpan(
-                                        style: TextStyle(color: Colors.white),
-                                        text: '${data['prix']}',
-                                      ),
+                                  RichText(
+                                    overflow: TextOverflow.ellipsis,
+                                    strutStyle: StrutStyle(fontSize: 10.0),
+                                    text: TextSpan(
+                                      style: TextStyle(color: Colors.white),
+                                      text: '${data['prix']}',
                                     ),
                                   ),
                                 ],

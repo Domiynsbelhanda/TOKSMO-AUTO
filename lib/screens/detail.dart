@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constant.dart';
 import 'package:flutter/material.dart';
+
+import 'ImageScreen.dart';
 
 class DetailScreen extends StatefulWidget {
   final String keys;
@@ -58,7 +61,18 @@ class _DetailScreenState extends State<DetailScreen> {
 
         List<Widget> imageSliders = data['image']
             .map<Widget>((item){
-              return Container(
+              return GestureDetector(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ImageScreen(
+                              data['image']
+                            )
+                    ),
+                  );
+                },
                 child: Container(
                   margin: EdgeInsets.all(5.0),
                   child: ClipRRect(
@@ -281,34 +295,50 @@ class _DetailScreenState extends State<DetailScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
+                        onPressed: () async{
+
+                          String response = 'tel:+243893890266';
+
+                          if (await canLaunch(response)) {
+                            await launch(response);
+                          } else {
+                            throw 'Could not launch $response';
+                          }
                         },
-                        child: const Text('appel'),
+                        child: const Text('APPEL'),
                         style: TextButton.styleFrom(
                           primary: kTextColor,
                           backgroundColor: kPrimaryColor,
                           textStyle: kPrice,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(5),
                             ),
                           ),
                         ),
                       ),
 
                       TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
+                        onPressed: () async{
+
+                          String response = url(
+                              '+243893890266',
+                              'Bonjour, je suis intéressé par votre véhicule ${data['marque'].toString()}, ${data['modele'].toString()} ${data['name'].toString()} 《code ${data['code'].toString()}》 que vous vendez dans l\'application TOKSMO -AUTO');
+
+                          if (await canLaunch(response)) {
+                            await launch(response);
+                          } else {
+                            throw 'Could not launch $response';
+                          }
                         },
-                        child: const Text('whatsapp'),
+                        child: const Text('WHATSAPP'),
                         style: TextButton.styleFrom(
                           primary: Colors.green,
                           backgroundColor: Colors.white,
                           textStyle: kPrice,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
-                              Radius.circular(10),
+                              Radius.circular(5),
                             ),
                           ),
                         ),
