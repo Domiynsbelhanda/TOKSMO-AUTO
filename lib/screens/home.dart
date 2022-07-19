@@ -448,49 +448,44 @@ class _HomeScreenState extends State<HomeScreen> {
                         ,
                       );
                     },
-                    child : Stack(
-                      children: [
-                        Container(
-                          width: size.width / 2,
-                          height: size.height * 0.1,
-                          margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: kShadeColor.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                    child : Container(
+                      width: size.width / 1.5,
+                      height: size.height * 0.1,
+                      margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: kShadeColor.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.network('${data['image'][0]}'),
+                          const SizedBox(width: 16),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.network('${data['image'][0]}'),
-                              const SizedBox(width: 16),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  RichText(
-                                    overflow: TextOverflow.ellipsis,
-                                    strutStyle: StrutStyle(fontSize: 12.0),
-                                    text: TextSpan(
-                                      style: TextStyle(color: Colors.white),
-                                      text: '${data['modele']}',
-                                    ),
-                                  ),
-                                  const SizedBox(height: 3),
-                                  RichText(
-                                    overflow: TextOverflow.ellipsis,
-                                    strutStyle: StrutStyle(fontSize: 10.0),
-                                    text: TextSpan(
-                                      style: TextStyle(color: Colors.white),
-                                      text: '${data['prix']}',
-                                    ),
-                                  ),
-                                ],
+                              Container(
+                                width: size.width / 2.5,
+                                child: Text(
+                                    '${data['modele']}',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              const SizedBox(height: 3),
+                              RichText(
+                                overflow: TextOverflow.ellipsis,
+                                strutStyle: StrutStyle(fontSize: 10.0),
+                                text: TextSpan(
+                                  style: TextStyle(color: Colors.white),
+                                  text: '${data['prix']}',
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   );
                 }
