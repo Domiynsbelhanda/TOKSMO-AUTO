@@ -335,16 +335,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: kBackgroundColor,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Flexible(
-                                        child: RichText(
-                                          overflow: TextOverflow.ellipsis,
-                                          strutStyle: StrutStyle(fontSize: 12.0),
-                                          text: TextSpan(
-                                            style: TextStyle(color: Colors.white),
-                                            text: '${data['marque']} ${data['name']}',
-                                          ),
+                                      child: Text(
+                                          '${data['marque']} ${data['name']}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12.0
                                         ),
-                                      ),
+                                      )
                                     ),
                                   ),
                                 ),
@@ -359,16 +356,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                         color: kBackgroundColor,
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      child: Flexible(
-                                        child: RichText(
-                                          overflow: TextOverflow.ellipsis,
-                                          strutStyle: StrutStyle(fontSize: 12.0),
-                                          text: TextSpan(
-                                            style: TextStyle(color: Colors.white),
-                                            text: '${data['prix']}',
-                                          ),
+                                      child: Text(
+                                          '${data['prix']}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12.0
                                         ),
-                                      ),
+                                      )
                                     ),
                                   ),
                                 )
@@ -448,7 +442,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       },
                       child : Container(
-                        width: size.width / 1.5,
+                        width: size.width / 1.5 + 7.3,
                         height: size.height * 0.1,
                         margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
                         padding: const EdgeInsets.all(8),
@@ -473,12 +467,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 3),
-                                RichText(
-                                  overflow: TextOverflow.ellipsis,
-                                  strutStyle: StrutStyle(fontSize: 10.0),
-                                  text: TextSpan(
-                                    style: TextStyle(color: Colors.white),
-                                    text: '${data['prix']}',
+                                Text(
+                                  '${data['prix']}',
+                                  style: const TextStyle(
+                                    fontSize: 10.0,
+                                    color: Colors.white
                                   ),
                                 ),
                               ],
