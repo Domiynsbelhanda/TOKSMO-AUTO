@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:toksmo_auto/data/brand.dart';
 import 'constant.dart';
-import 'data/car.dart';
-import 'data/firestore_service.dart';
 import 'screens/home.dart';
 
 void main() async {

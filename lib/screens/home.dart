@@ -288,95 +288,95 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           return SizedBox(
             height: size.height * 0.21,
-            child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: datas.length,
-                itemBuilder: (ctx, i) {
-                  Map<String, dynamic> data = datas[i].data()! as Map<String, dynamic>;
-                  return GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                DetailScreen(
-                                    keys: '${data['key']}',
-                                  type: type,
-                                )
-                        ),
-                      );
-                    },
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: size.height * 0.2,
-                          width: size.width * 0.35,
-                          alignment: Alignment.centerLeft,
-                          margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                          padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  '${data['image'][0]}'
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 17.0, bottom: 8.0),
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              width: size.width * 0.34,
-                              padding: EdgeInsets.all(4.0),
-                              decoration: BoxDecoration(
-                                color: kBackgroundColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Flexible(
-                                child: RichText(
-                                  overflow: TextOverflow.ellipsis,
-                                  strutStyle: StrutStyle(fontSize: 12.0),
-                                  text: TextSpan(
-                                    style: TextStyle(color: Colors.white),
-                                    text: '${data['marque']} ${data['name']}',
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: datas.map((e){
+                          Map<String, dynamic> data = e.data()! as Map<String, dynamic>;
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailScreen(
+                                            keys: '${data['key']}',
+                                          type: type,
+                                        )
+                                ),
+                              );
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: size.height * 0.2,
+                                  width: size.width * 0.35,
+                                  alignment: Alignment.centerLeft,
+                                  margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                                  padding: const EdgeInsets.fromLTRB(12, 16, 0, 11),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          '${data['image'][0]}'
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 17.0, bottom: 8.0),
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Container(
+                                      width: size.width * 0.34,
+                                      padding: EdgeInsets.all(4.0),
+                                      decoration: BoxDecoration(
+                                        color: kBackgroundColor,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Flexible(
+                                        child: RichText(
+                                          overflow: TextOverflow.ellipsis,
+                                          strutStyle: StrutStyle(fontSize: 12.0),
+                                          text: TextSpan(
+                                            style: TextStyle(color: Colors.white),
+                                            text: '${data['marque']} ${data['name']}',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0, top: 1.0),
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                              padding: EdgeInsets.all(4.0),
-                              decoration: BoxDecoration(
-                                color: kBackgroundColor,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Flexible(
-                                child: RichText(
-                                  overflow: TextOverflow.ellipsis,
-                                  strutStyle: StrutStyle(fontSize: 12.0),
-                                  text: TextSpan(
-                                    style: TextStyle(color: Colors.white),
-                                    text: '${data['prix']}',
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16.0, top: 1.0),
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: Container(
+                                      padding: EdgeInsets.all(4.0),
+                                      decoration: BoxDecoration(
+                                        color: kBackgroundColor,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Flexible(
+                                        child: RichText(
+                                          overflow: TextOverflow.ellipsis,
+                                          strutStyle: StrutStyle(fontSize: 12.0),
+                                          text: TextSpan(
+                                            style: TextStyle(color: Colors.white),
+                                            text: '${data['prix']}',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                )
+                              ],
                             ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                }
+                          );
+                }).toList()
+              ),
             ),
           );
         },
@@ -430,65 +430,65 @@ class _HomeScreenState extends State<HomeScreen> {
           }
           return SizedBox(
             height: size.height * 0.1,
-            child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: datas.length,
-                itemBuilder: (ctx, i) {
-                  Map<String, dynamic> data = datas[i].data()! as Map<String, dynamic>;
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: datas.map((e){
+                  Map<String, dynamic> data = e.data()! as Map<String, dynamic>;
                   return GestureDetector(
-                    onTap: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>
-                            DetailScreen(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>
+                              DetailScreen(
                                 keys: '${data['key']}',
-                              type: type,
-                            ))
-                        ,
-                      );
-                    },
-                    child : Container(
-                      width: size.width / 1.5,
-                      height: size.height * 0.1,
-                      margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: kShadeColor.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.network('${data['image'][0]}'),
-                          const SizedBox(width: 16),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: size.width / 2.5,
-                                child: Text(
+                                type: type,
+                              ))
+                          ,
+                        );
+                      },
+                      child : Container(
+                        width: size.width / 1.5,
+                        height: size.height * 0.1,
+                        margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: kShadeColor.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.network('${data['image'][0]}'),
+                            const SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: size.width / 2.5,
+                                  child: Text(
                                     '${data['modele']}',
-                                  style: TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 3),
-                              RichText(
-                                overflow: TextOverflow.ellipsis,
-                                strutStyle: StrutStyle(fontSize: 10.0),
-                                text: TextSpan(
-                                  style: TextStyle(color: Colors.white),
-                                  text: '${data['prix']}',
+                                const SizedBox(height: 3),
+                                RichText(
+                                  overflow: TextOverflow.ellipsis,
+                                  strutStyle: StrutStyle(fontSize: 10.0),
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.white),
+                                    text: '${data['prix']}',
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
                   );
-                }
+                }).toList(),
+              ),
             ),
           );
         },
